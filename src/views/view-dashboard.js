@@ -10,7 +10,7 @@ import '@furo/form/src/furo-form.js';
 import '@furo/input/src/furo-icon-button.js';
 import '@furo/notification/src/furo-snackbar.js';
 import '@furo/util/src/furo-pretty-json.js';
-import '../project_components/tasks/task-creator.js'
+import '../project_components/tasks/task-creator-widget.js'
 import '../project_components/tasks/task-list-card.js'
 /**
  * `view-dashboard`
@@ -64,10 +64,25 @@ class ViewDashboard extends FBP(LitElement) {
         }
 
 
-       furo-pretty-json{
-         overflow: auto;
-         height: 300px;
-       }
+        .wrapper > *  {
+          grid-column-end: span 2;
+          background-color: #ffa94d;
+        }
+        .wrapper > *[double]  {
+          grid-column-end: span 4;
+          background-color: #ffa94d;
+        }
+
+        .wrapper {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+          gap: 12px;
+          grid-auto-flow: dense;
+          list-style: none;
+          padding: 1em;
+          width: 100%;
+          box-sizing: border-box;
+        }
       `
     );
   }
@@ -88,25 +103,27 @@ class ViewDashboard extends FBP(LitElement) {
           <furo-icon-button icon="settings" @-click="--op"></furo-icon-button>
           <furo-snackbar
             position-right
-            action-button-text="ignore"
-            timeout-in-ms="8000"
-            label-text="Settings page is not implemented yet. This message destroys itself in 8 seconds"
-            ƒ-show="--op"
+            timeout-in-ms="4000"
+            label-text="New task sucessfully created"
+            ƒ-show="--taskCreated"
           ></furo-snackbar>
         </furo-app-bar-top>
         <div flex scroll>
-          <task-creator   ƒ-focus="--FBPready" @-create-success="--taskCreated"></task-creator>
+          <div class="wrapper">
+          <task-creator-widget ƒ-focus="--FBPready" @-create-success="--taskCreated"></task-creator-widget>
+          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
+          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
+          <task-creator-widget double @-create-success="--taskCreated"></task-creator-widget>
+          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
+          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
+          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
+          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
+          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
+          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
+          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
+          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
+          </div>
 
-          <furo-vertical-flex>
-          <task-list-card flex ƒ-refresh-list="--taskCreated" @-tablerow-selected="--entity"></task-list-card>
-          <furo-horizontal-flex flex>
-            <furo-data-object type="task.Task" ƒ-inject-raw="--entity(*.data)" @-data-injected="--new"></furo-data-object>
-            <furo-pretty-json flex ƒ-inject-data="--new(*._value)"></furo-pretty-json>
-            <furo-pretty-json flex ƒ-inject-data="--entity"></furo-pretty-json>
-
-          </furo-horizontal-flex>
-
-          </furo-vertical-flex>
         </div>
       </furo-vertical-flex>
     `;
