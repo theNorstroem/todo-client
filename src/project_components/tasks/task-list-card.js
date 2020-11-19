@@ -3,6 +3,7 @@ import {Theme} from "@furo/framework/src/theme.js"
 import {FBP} from "@furo/fbp";
 import "@furo/navigation/src/furo-catalog.js"
 import "@furo/data-ui/src/furo-catalog.js"
+
 /**
  * `task-list-card`
  * todo Describe your element
@@ -88,7 +89,7 @@ class TaskListCard extends FBP(LitElement) {
             tabindex="1"
             single-selection
             type="task.Task"
-            fields="display_name, note"
+            fields="done, display_name, note"
             sortable-fields="display_name"
             ƒ-bind-data="--taskCollectionDO"
             ƒ-trigger-navigation="--navpad"

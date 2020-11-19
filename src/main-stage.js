@@ -1,7 +1,7 @@
-import { LitElement, html, css } from 'lit-element';
-import { FBP } from '@furo/fbp';
-import { Theme } from '@furo/framework/src/theme.js';
-import { Styling } from './configs/styling.js';
+import {LitElement, html, css} from 'lit-element';
+import {FBP} from '@furo/fbp';
+import {Theme} from '@furo/framework/src/theme.js';
+import {Styling} from './configs/styling.js';
 
 import '@furo/input/src/furo-button.js';
 import '@furo/route/src/furo-location.js';
@@ -17,7 +17,7 @@ import './menu/main-menu.js';
  * The lazy imports a below in _FBPReady
  */
 
-import './views/view-somecontent.js';
+
 import './views/view-dashboard.js';
 import './views/view-auth.js';
 import './views/view-404.js';
@@ -35,22 +35,15 @@ class MainStage extends FBP(LitElement) {
      * Register hook on wire --locationChanged to
      * Lazy load parts of the page
      *
-     * DO NOT FORGET TO REGISTER THE LAZY LOADED PARTS IN ~/polymer.json => fragments[...]
-     *
      */
     this._FBPAddWireHook('--locationChanged', async e => {
       switch (e.pathSegments[0]) {
-        case 'tree':
-          await import('./views/view-tree.js');
+        case 'lazy-loaded':
+          await import('./views/view-lazy-loaded.js');
           break;
-        case 'tree-inline':
-          await import('./views/view-tree-inline.js');
-          break;
-        case 'form':
-          await import('./views/view-formsample.js');
-          break;
-        case 'examplelayout':
-          await import('./views/view-layout-example.js');
+
+        case 'task':
+          await import('./views/tasks/view-task.js');
           break;
         default:
       }
@@ -115,13 +108,8 @@ class MainStage extends FBP(LitElement) {
           @-response-error="--responseError"
         >
           <view-dashboard name="dashboard"></view-dashboard>
-          <view-tree name="tree"></view-tree>
-          <view-tree-inline name="tree-inline"></view-tree-inline>
           <view-auth name="auth"></view-auth>
-          <view-formsample name="form"></view-formsample>
-          <view-somecontent name="somecontent"></view-somecontent>
-          <view-layout-example name="examplelayout"></view-layout-example>
-          <view-generates-viewer name="generates"></view-generates-viewer>
+          <view-task name="task"></view-task>
           <view-404 name="404"></view-404>
         </furo-pages>
       </furo-app-drawer>

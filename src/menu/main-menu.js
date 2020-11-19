@@ -243,17 +243,12 @@ class MainMenu extends FBP(LitElement) {
           >
         </li>
         <li>
-          <a href="tree">
-            <furo-icon icon="list"></furo-icon>
-            tree sample</a
+          <a href="persons">
+            <furo-icon icon="perm-identity"></furo-icon>
+            persons</a
           >
         </li>
-        <li>
-          <a href="tree-inline/xxx">
-            <furo-icon icon="list"></furo-icon>
-            tree inline</a
-          >
-        </li>
+
       </ul>
       <div class="label">other stuff</div>
       <ul>
@@ -263,28 +258,11 @@ class MainMenu extends FBP(LitElement) {
             form sample</a
           >
         </li>
-        <li>
-          <a href="auth">
-            <furo-icon icon="perm-identity"></furo-icon>
-            Auth</a
-          >
-        </li>
+
         <li>
           <a href="unknown">
             <furo-icon icon="extension"></furo-icon>
             link to nowhere</a
-          >
-        </li>
-        <li>
-          <a href="somecontent">
-            <furo-icon icon="warning"></furo-icon>
-            Blank page</a
-          >
-        </li>
-        <li>
-          <a href="examplelayout">
-            <furo-icon icon="view-day"></furo-icon>
-            layout example</a
           >
         </li>
       </ul>

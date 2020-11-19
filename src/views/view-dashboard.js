@@ -10,8 +10,8 @@ import '@furo/form/src/furo-form.js';
 import '@furo/input/src/furo-icon-button.js';
 import '@furo/notification/src/furo-snackbar.js';
 import '@furo/util/src/furo-pretty-json.js';
-import '../project_components/task-creator.js'
-import '../project_components/task-list-card.js'
+import '../project_components/tasks/task-creator.js'
+import '../project_components/tasks/task-list-card.js'
 /**
  * `view-dashboard`
  * todo Describe your element

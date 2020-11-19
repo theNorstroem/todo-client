@@ -1,7 +1,7 @@
 import {LitElement, html, css} from 'lit-element';
 import {Theme} from "@furo/framework/src/theme.js"
 import {FBP} from "@furo/fbp";
-import '../generated_components/task/task-task-form.js'
+import '../../generated_components/task/task-task-form.js'
 import "@furo/data/src/furo-catalog.js"
 import {  i18n  } from '@furo/framework/src/i18n.js';
 
