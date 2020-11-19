@@ -55,10 +55,14 @@ class TaskCreatorWidget extends FBP(LitElement) {
       :host {
         display: block;
         box-sizing: border-box;
+        height: 100%;
       }
 
       :host([hidden]) {
         display: none;
+      }
+      furo-card{
+        height: 100%;
       }
 
     `

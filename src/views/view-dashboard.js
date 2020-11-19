@@ -66,16 +66,19 @@ class ViewDashboard extends FBP(LitElement) {
 
         .wrapper > *  {
           grid-column-end: span 2;
+          grid-row-end: span 2;
           background-color: #ffa94d;
         }
         .wrapper > *[double]  {
           grid-column-end: span 4;
+          grid-row-end: span 3;
           background-color: #ffa94d;
         }
 
         .wrapper {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+          grid-template-rows: repeat(auto-fill, minmax(148px, 1fr));
           gap: 12px;
           grid-auto-flow: dense;
           list-style: none;
