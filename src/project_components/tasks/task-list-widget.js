@@ -3,6 +3,8 @@ import {Theme} from "@furo/framework/src/theme.js"
 import {FBP} from "@furo/fbp";
 import {i18n} from '@furo/framework/src/i18n.js';
 
+import "./task-list.js"
+
 /**
  * `task-list-widget`
  * todo Describe your element
@@ -23,6 +25,10 @@ class TaskListWidget extends FBP(LitElement) {
     // this._FBPTraceWires()
   }
 
+  refresh(e){
+    this._FBPTriggerWire("--refreshRequested",e)
+  }
+
   /**
    * Themable Styles
    * @private
@@ -31,17 +37,21 @@ class TaskListWidget extends FBP(LitElement) {
   static get styles() {
     // language=CSS
     return Theme.getThemeForComponent('TaskListWidget') || css`
-        :host {
-            display: block;
-        }
+      :host {
+        display: block;
+      }
 
-        :host([hidden]) {
-            display: none;
-        }
+      :host([hidden]) {
+        display: none;
+      }
 
-        furo-card{
-          height: 100%;
-        }
+      furo-card {
+        height: 100%;
+      }
+
+      .list {
+        height: 480px;
+      }
     `
   }
 
@@ -55,15 +65,14 @@ class TaskListWidget extends FBP(LitElement) {
     // language=HTML
     return html`
       <furo-card header-text="Current Tasks">
+       <task-list ƒ-refresh="--refreshRequested" class="list"></task-list>
 
-
-        <p>Hej, welcome</p>
         <furo-horizontal-flex space slot="action">
-          <!-- The button triggers the wire @-click="--createBtnClicked". This only says, that the button was clicked. The button does not have to know something -->
+          <!-- The button triggers the wire @-click="--refreshBtnClicked". This only says, that the button was clicked. The button does not have to know something -->
           <furo-button  label="${i18n.t('refresh')}" rel="create" @-click="--refreshBtnClicked"></furo-button>
           <div flex></div>
-          <furo-icon-button disabled icon="arrow-back" @-click="--backBtnClicked"></furo-icon-button>
-          <furo-icon-button disabled icon="arrow-forward" @-click="--forwardBtnClicked"></furo-icon-button>
+          <furo-icon-button disabled rel="prev" icon="arrow-back" @-click="--backBtnClicked"></furo-icon-button>
+          <furo-icon-button disabled rel="next" icon="arrow-forward" @-click="--forwardBtnClicked"></furo-icon-button>
         </furo-horizontal-flex>
       </furo-card>
     `;

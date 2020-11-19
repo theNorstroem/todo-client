@@ -68,7 +68,7 @@ class ViewTask extends FBP(LitElement) {
         <furo-app-bar-top navigation-icon="arrow-back"  @-navigation-clicked="--navBackClicked" drawer="main-drawer">
           <div>Tasks</div>
           <furo-empty-spacer></furo-empty-spacer>
-          <furo-icon-button icon="settings" @-click="--op"></furo-icon-button>
+          <furo-icon-button icon="settings" @-click="--settings"></furo-icon-button>
 
         </furo-app-bar-top>
         <div flex  >
@@ -83,6 +83,7 @@ class ViewTask extends FBP(LitElement) {
       </furo-vertical-flex>
 
       <furo-app-flow ƒ-trigger="--navBackClicked" event="exit-tasks"></furo-app-flow>
+      <furo-app-flow ƒ-trigger="--settings" event="view-settings-requested"></furo-app-flow>
     `;
   }
 }
