@@ -79,7 +79,7 @@ class TaskCreator extends FBP(LitElement) {
       <furo-card>
 
         <h1>Add a task</h1>
-        <p>This has nothing to do with adatask industries</p>
+        <p>This is the minimal </p>
         <task-task-form header-text="" ƒ-bind-data="--taskDO" ƒ-focus="--taskCreated" @-create-requested="--createRequested"></task-task-form>
 
         <furo-horizontal-flex space slot="action">
