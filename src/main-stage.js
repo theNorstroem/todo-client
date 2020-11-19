@@ -43,7 +43,7 @@ class MainStage extends FBP(LitElement) {
           break;
 
         case 'task':
-          await import('./views/tasks/view-task.js');
+          await import('./views/task/view-task.js');
           break;
         default:
       }

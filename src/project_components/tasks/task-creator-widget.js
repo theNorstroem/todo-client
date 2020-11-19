@@ -18,19 +18,6 @@ class TaskCreatorWidget extends FBP(LitElement) {
 
 
   /**
-   * @private
-   * @return {Object}
-   */
-  static get properties() {
-    return {
-      /**
-       * Description
-       */
-      myBool: {type: Boolean}
-    };
-  }
-
-  /**
    * flow is ready lifecycle method
    */
   _FBPReady() {
@@ -38,6 +25,8 @@ class TaskCreatorWidget extends FBP(LitElement) {
     // this._FBPTraceWires()
     // this._FBPTriggerWire("--focus", this)
 
+    // we set this value to use it as a init for the create object.
+    this.emptyObject = {}
   }
 
   focus() {
@@ -77,8 +66,8 @@ class TaskCreatorWidget extends FBP(LitElement) {
   render() {
     // language=HTML
     return html`
-      <furo-card>
-      <furo-form header-text="Add a task" secondary-text="You can edit the task in detail later.">
+      <furo-card header-text="Add a task" secondary-text="You can edit the task in detail later.">
+      <furo-form  ƒ-start-activity="--createBtnClicked" ƒ-stop-activity="--taskCreated">
 
         <!-- We use the form layouter, because it does all the aligning and visualizing stuff for us -->
         <furo-form-layouter one>
@@ -101,7 +90,7 @@ class TaskCreatorWidget extends FBP(LitElement) {
       <!-- We trigger the create method on the entity agent by the wire --createBtnClicked. We use create, because we always want to create new tasks when possible -->
       <furo-entity-agent
       service="Tasks"
-      ƒ-bind-request-data="--taskDO" ƒ-hts-in="--TasksHTS" ƒ-create="--createBtnClicked" @-create-success="--taskCreated"></furo-entity-agent>
+      ƒ-bind-request-data="--taskDO" ƒ-hts-in="--TasksHTS" ƒ-create="--createBtnClicked" @-create-success="--taskCreated(emptyObject)"></furo-entity-agent>
       <furo-deep-link service="Tasks" ƒ-trigger="--FBPready" @-hts-out="--TasksHTS"></furo-deep-link>
 
     `;

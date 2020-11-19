@@ -237,13 +237,19 @@ class MainMenu extends FBP(LitElement) {
 
       <ul>
         <li>
-          <a href="dashboard">
+          <a href="/dashboard">
             <furo-icon icon="dashboard"></furo-icon>
             dashboard</a
           >
         </li>
         <li>
-          <a href="persons">
+          <a href="/task">
+            <furo-icon icon="perm-identity"></furo-icon>
+            tasks</a
+          >
+        </li>
+        <li>
+          <a href="/persons">
             <furo-icon icon="perm-identity"></furo-icon>
             persons</a
           >
@@ -252,12 +258,8 @@ class MainMenu extends FBP(LitElement) {
       </ul>
       <div class="label">other stuff</div>
       <ul>
-        <li>
-          <a href="form">
-            <furo-icon icon="receipt"></furo-icon>
-            form sample</a
-          >
-        </li>
+
+
 
         <li>
           <a href="unknown">

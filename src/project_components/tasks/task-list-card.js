@@ -61,7 +61,6 @@ class TaskListCard extends FBP(LitElement) {
     return Theme.getThemeForComponent('TaskListCard') || css`
         :host {
             display: block;
-          padding: 12px;
         }
 
         :host([hidden]) {

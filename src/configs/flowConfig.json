@@ -2,6 +2,7 @@
     ["*", "unauthorized", "auth"],
     ["auth", "login-successfull", "dashboard"],
     ["*", "view-dashboard-requested", "dashboard"],
+    ["task", "exit-tasks", "dashboard"],
     ["*", "form-requested", "form"],
     ["*", "search", "EXTERNAL_LINK: https://google.com/"],
     ["*", "searchInNewPage", "EXTERL_LINK_BLANK: https://google.com/"]

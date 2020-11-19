@@ -11,7 +11,7 @@ import '@furo/input/src/furo-icon-button.js';
 import '@furo/notification/src/furo-snackbar.js';
 import '@furo/util/src/furo-pretty-json.js';
 import '../project_components/tasks/task-creator-widget.js'
-import '../project_components/tasks/task-list-card.js'
+import '../project_components/tasks/task-list-widget.js'
 /**
  * `view-dashboard`
  * todo Describe your element
@@ -110,7 +110,6 @@ class ViewDashboard extends FBP(LitElement) {
         <furo-app-bar-top drawer="main-drawer">
           <div>Dashboard</div>
           <furo-empty-spacer></furo-empty-spacer>
-          <furo-icon-button icon="search" @-click="--float"></furo-icon-button>
           <furo-icon-button icon="settings" @-click="--op"></furo-icon-button>
           <furo-snackbar
             position-right
@@ -122,7 +121,7 @@ class ViewDashboard extends FBP(LitElement) {
         <div flex scroll class="autogrid">
 
           <task-creator-widget ƒ-focus="--FBPready" @-create-success="--taskCreated"></task-creator-widget>
-          <task-list-widget high ƒ-refresh="--taskCreated">Task List</task-list-widget>
+          <task-list-widget high ƒ-refresh="--taskCreated"></task-list-widget>
 
           <div>Person List</div>
           <div>Message</div>
