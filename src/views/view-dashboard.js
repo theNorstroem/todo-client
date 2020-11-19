@@ -64,25 +64,33 @@ class ViewDashboard extends FBP(LitElement) {
         }
 
 
-        .wrapper > *  {
+        .autogrid > * {
           grid-column-end: span 2;
           grid-row-end: span 2;
-          background-color: #ffa94d;
-        }
-        .wrapper > *[double]  {
-          grid-column-end: span 4;
-          grid-row-end: span 3;
-          background-color: #ffa94d;
+
+          background-color: #f5f5f5;
         }
 
-        .wrapper {
+        .autogrid > *[double] {
+          grid-column-end: span 4;
+          grid-row-end: span 3;
+
+        }
+
+        .autogrid > *[high] {
+          grid-row-end: span 4;
+
+        }
+
+        .autogrid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
-          grid-template-rows: repeat(auto-fill, minmax(148px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(236px, 1fr));
+          grid-auto-rows: minmax(148px, 1fr);
           gap: 12px;
           grid-auto-flow: dense;
           list-style: none;
-          padding: 1em;
+          padding: 12px;
+          margin-bottom: 12px;
           width: 100%;
           box-sizing: border-box;
         }
@@ -111,21 +119,16 @@ class ViewDashboard extends FBP(LitElement) {
             ƒ-show="--taskCreated"
           ></furo-snackbar>
         </furo-app-bar-top>
-        <div flex scroll>
-          <div class="wrapper">
+        <div flex scroll class="autogrid">
+
           <task-creator-widget ƒ-focus="--FBPready" @-create-success="--taskCreated"></task-creator-widget>
-          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
-          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
-          <task-creator-widget double @-create-success="--taskCreated"></task-creator-widget>
-          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
-          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
-          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
-          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
-          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
-          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
-          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
-          <task-creator-widget  @-create-success="--taskCreated"></task-creator-widget>
-          </div>
+          <task-list-widget high ƒ-refresh="--taskCreated">Task List</task-list-widget>
+
+          <div>Person List</div>
+          <div>Message</div>
+          <div></div>
+
+
 
         </div>
       </furo-vertical-flex>
