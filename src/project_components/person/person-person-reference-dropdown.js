@@ -91,7 +91,6 @@ export class PersonPersonReferenceDropdown extends FBP(LitElement) {
   render() {
     // language=HTML
     return html`
-<div>kkk</div>
       <!-- It is a good practice to set a description -->
       <furo-data-collection-dropdown
         ?condensed="${this.condensed}"

@@ -103,7 +103,7 @@ export class TaskTaskForm extends FBP(LitElement) {
         secondary-text="${this.secondaryText ? this.secondaryText : ''}"
       >
         <!-- It is a good practice to set a description -->
-        <furo-form-layouter four>
+        <furo-form-layouter four breakpoint-big="640" breakpoint-small="405">
           <!-- field: note -->
           <furo-data-text-input
             condensed
@@ -143,13 +143,14 @@ export class TaskTaskForm extends FBP(LitElement) {
           <string-repeat
             condensed
             double
-            header-text="${i18n.t('form.task.task.checklist.header.text')}"
-            secondary-text="${i18n.t('form.task.task.checklist.secondary.text')}"
+            header-text="Checklist"
+            secondary-text="Items to prove to accomplish the task"
+            label-add-button="Add checklist item"
             ƒ-bind-data="--data(*.checklist)"
           ></string-repeat>
           <person-dropdown-repeat
-            header-text="${i18n.t('form.task.task.involved_persons.header.text')}"
-            secondary-text="${i18n.t('form.task.task.involved_persons.secondary.text')}"
+            header-text="Involved Persons"
+            secondary-text="Sometimes a task is to hard for one person only."
             condensed
             double
             ƒ-bind-data="--data(*.involved_persons)"

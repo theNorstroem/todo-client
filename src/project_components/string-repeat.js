@@ -44,6 +44,7 @@ export class StringRepeat extends FBP(LitElement) {
       // Label for the add button
       labelAdd: {
         type: String,
+        attribute: 'label-add-button',
       },
     };
   }

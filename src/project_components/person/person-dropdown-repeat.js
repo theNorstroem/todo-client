@@ -125,8 +125,7 @@ export class PersonDropdownRepeat extends FBP(LitElement) {
 
         <!-- It is a good practice to set a description -->
         <furo-button
-          outline
-          label="add ${this.field._name}"
+          label="add involved persons"
           @-click="--adderTriggered(park)"
         ></furo-button>
       </furo-horizontal-flex>

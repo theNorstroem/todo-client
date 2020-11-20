@@ -2,7 +2,7 @@ export const Translations = {
   en: {},
   'en-US': {},
   'de-DE': {
-    form: {
+      form: {
       task: {
         task: {
           wraps: {
@@ -15,7 +15,12 @@ export const Translations = {
     task: {
       Task: {
         display_name: {
-          label: 'Name',
+          label: 'Aufgabe',
+          hint: 'Kurz und prägnant, so dass es andere auch verstehen können.',
+        },
+        note: {
+          label: 'Notizen',
+          hint: 'Hier darfst und sollst du ausführlicher sein.',
         },
         description: {
           label: 'Beschreibung',
@@ -26,8 +31,11 @@ export const Translations = {
       },
     },
     reload: 'Neu laden',
+    refresh: 'Aktualiseren',
+    create: 'Ertellen',
     cancel: 'Abbrechen',
     delete: 'Löschen',
+    search: 'Suchen',
     lorem:
       'This text translates lorem to: At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ',
     install: 'Installieren',

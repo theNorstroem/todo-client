@@ -79,7 +79,7 @@ class ViewTask extends FBP(LitElement) {
         </furo-app-bar-top>
 
         <furo-horizontal-flex flex>
-          <furo-resizer righthandle="" maxwidth="480">
+          <furo-resizer righthandle="" style="width: 260px;border-right: 1px solid var(--separator,#FAFAFA)" minwidth="260" maxwidth="480" remember="view-task-navigation">
             <task-navigation ƒ-refresh="--pageEntered"></task-navigation>
           </furo-resizer>
           <task-detail flex ƒ-set-qp="--locationChanged(*.query)"></task-detail>
