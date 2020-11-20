@@ -8,11 +8,10 @@ import {i18n} from '@furo/framework/src/i18n.js';
 
 import "@furo/data-input";
 import "@furo/form";
-import "./task-task-reference-search.js";
-import "../person/person-person-reference-dropdown.js";
-import "../person/person-reference-form.js";
-import "../../project_components/string-repeat.js";
-import "../../project_components/person/person-dropdown-repeat.js";
+import "../task-task-reference-search.js";
+import "../../person/person-person-reference-dropdown.js";
+import "../../string-repeat.js";
+import "../../person/person-dropdown-repeat.js";
 
 /**
  * Tasks are essential at work.

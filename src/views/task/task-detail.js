@@ -2,6 +2,7 @@ import {LitElement, html, css} from 'lit-element';
 import {Theme} from "@furo/framework/src/theme.js"
 import {FBP} from "@furo/fbp";
 
+import "../../project_components/tasks/edit/task-task-update-panel.js"
 /**
  * `task-detail`
  * todo Describe your element
@@ -25,6 +26,15 @@ class TaskDetail extends FBP(LitElement) {
        */
       myBool: {type: Boolean}
     };
+  }
+
+  /**
+   * Exposes --queryParams
+   * @param {Object} det
+   */
+  setQp(det) {
+    // setze auf edit wenn wir sco und arb haben
+    this._FBPTriggerWire('--queryParams', det);
   }
 
   /**
@@ -62,7 +72,16 @@ class TaskDetail extends FBP(LitElement) {
   render() {
     // language=HTML
     return html`
-      <p>Hej, welcome</p>
+      <task-task-update-panel ƒ-hts-in="--hts"></task-task-update-panel>
+
+      <furo-deep-link
+        service="Tasks"
+        ƒ-qp-in="--queryParams"
+        @-hts-out="--hts"
+      ></furo-deep-link>
+
+
+
     `;
   }
 }

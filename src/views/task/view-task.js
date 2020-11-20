@@ -79,11 +79,18 @@ class ViewTask extends FBP(LitElement) {
           <furo-resizer righthandle="" maxwidth="480">
             <task-navigation ƒ-refresh="--pageEntered" ></task-navigation>
           </furo-resizer>
-          <task-detail flex></task-detail>
+          <task-detail flex ƒ-set-qp="--locationChanged(*.query)"></task-detail>
         </furo-horizontal-flex>
       </furo-vertical-flex>
 
       <furo-app-flow ƒ-trigger="--navBackClicked" event="exit-tasks"></furo-app-flow>
+
+
+      <furo-location
+        url-space-regex="${window.APPROOT}/task"
+        @-location-changed="--locationChanged"
+      ></furo-location>
+
     `;
   }
 }
