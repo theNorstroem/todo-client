@@ -22,7 +22,7 @@ class TaskListWidget extends FBP(LitElement) {
    */
   _FBPReady() {
     super._FBPReady();
-    // this._FBPTraceWires()
+      this._FBPTraceWires()
   }
 
   refresh(e){
@@ -49,7 +49,7 @@ class TaskListWidget extends FBP(LitElement) {
         height: 100%;
       }
 
-      .list {
+      task-list {
         height: 480px;
       }
     `
@@ -65,7 +65,8 @@ class TaskListWidget extends FBP(LitElement) {
     // language=HTML
     return html`
       <furo-card header-text="Current Tasks">
-       <task-list ƒ-refresh="--refreshRequested" class="list"></task-list>
+
+       <task-list ƒ-refresh="--refreshRequested, --refreshBtnClicked" @-task-list-item="--rawTaskEntity"></task-list>
 
         <furo-horizontal-flex space slot="action">
           <!-- The button triggers the wire @-click="--refreshBtnClicked". This only says, that the button was clicked. The button does not have to know something -->
@@ -75,6 +76,14 @@ class TaskListWidget extends FBP(LitElement) {
           <furo-icon-button disabled rel="next" icon="arrow-forward" @-click="--forwardBtnClicked"></furo-icon-button>
         </furo-horizontal-flex>
       </furo-card>
+
+       <furo-reverse-deep-link
+        service="Tasks"
+        rel="self" @-converted="--taskQP"
+        ƒ-convert="--rawTaskEntity(*.links)"
+      ></furo-reverse-deep-link>
+
+<furo-app-flow ƒ-emit="--taskQP" event="show-task-requested"></furo-app-flow>
     `;
   }
 }

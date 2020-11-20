@@ -4,19 +4,20 @@ import {FBP} from "@furo/fbp";
 
 /**
  * `task-list-item`
- * todo Describe your element
+ *  A single task item to use in a list
  *
- * @summary todo shortdescription
+ * @summary list item for a task
  * @customElement
- * @demo demo-task-list-item
  * @appliesMixin FBP
  */
 class TaskListItem extends FBP(LitElement) {
 
   constructor() {
     super();
-    this.field = {}
+
+    this.data = {}; // we set data as empty object, because we use it in the template. Otherwise we will get "undefined" errors.
   }
+
 
   /**
    * @private
@@ -25,11 +26,43 @@ class TaskListItem extends FBP(LitElement) {
   static get properties() {
     return {
       /**
-       * Description
+       * mark the element as selected
        */
-      myBool: {type: Boolean}
+      selected: {type: Boolean, reflect: true}
     };
   }
+
+  /**
+   * set as selected
+   * This sets the attribute `selected` on this item
+   */
+  select() {
+    this.selected = true;
+    this.scrollIntoViewIfNeeded()
+  }
+
+  /**
+   * unset as selected
+   *
+   * This removes the attribute `selected` from this item
+   */
+  deselect() {
+    this.selected = false;
+  }
+
+
+  trigger() {
+    /**
+     * @event task-list-item
+     * Fired when A item is clicked/triggered
+     * detail payload: the raw entity of the item
+     */
+    let customEvent = new Event('task-list-item', {composed: true, bubbles: true});
+    customEvent.detail = this.entity;
+    this.dispatchEvent(customEvent)
+
+  }
+
 
   /**
    * flow is ready lifecycle method
@@ -39,11 +72,9 @@ class TaskListItem extends FBP(LitElement) {
     // this._FBPTraceWires()
   }
 
-  bindData(entity){
-    this.field = entity.data
-    this.field.addEventListener("branch-value-changed",()=>{
-      this.requestUpdate();
-    })
+  inject(rawentity) {
+    this.data = rawentity.data; // we set data to data, because it is easyier to use in the template
+    this.entity = rawentity; // we store the entity, because we will send it on the trigger action as payload.
   }
 
   /**
@@ -54,13 +85,24 @@ class TaskListItem extends FBP(LitElement) {
   static get styles() {
     // language=CSS
     return Theme.getThemeForComponent('TaskListItem') || css`
-        :host {
-            display: block;
-        }
+      :host {
+        display: block;
+      }
 
-        :host([hidden]) {
-            display: none;
-        }
+      :host([hidden]) {
+        display: none;
+      }
+
+
+      .task {
+        font-size: 18px;
+        line-height: 36px;
+      }
+
+      p {
+        margin: 0;
+        font-weight: normal;
+      }
     `
   }
 
@@ -73,7 +115,10 @@ class TaskListItem extends FBP(LitElement) {
   render() {
     // language=HTML
     return html`
-      ${this.field.display_name}
+<div @-click="^^list-item-clicked(index)">
+     <div class="task">${this.data.display_name}</div>
+     <p> ${this.data.note}</p>
+</div>
     `;
   }
 }

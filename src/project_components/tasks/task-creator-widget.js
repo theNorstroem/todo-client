@@ -66,8 +66,8 @@ class TaskCreatorWidget extends FBP(LitElement) {
   render() {
     // language=HTML
     return html`
-      <furo-card header-text="Add a task" secondary-text="You can edit the task in detail later.">
-      <furo-form  ƒ-start-activity="--createBtnClicked" ƒ-stop-activity="--taskCreated">
+      <furo-card header-text="Add a task" secondary-text="You can edit the task in detail later." ƒ-start-activity="--createBtnClicked" ƒ-stop-activity="--taskCreated">
+      <furo-form  >
 
         <!-- We use the form layouter, because it does all the aligning and visualizing stuff for us -->
         <furo-form-layouter one>
