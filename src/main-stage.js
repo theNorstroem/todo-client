@@ -37,7 +37,6 @@ class MainStage extends FBP(LitElement) {
      */
     this._FBPAddWireHook('--locationChanged', async e => {
       switch (e.pathSegments[0]) {
-
         case 'task':
           await import('./views/task/view-task.js');
           break;

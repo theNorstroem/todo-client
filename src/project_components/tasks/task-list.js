@@ -25,9 +25,22 @@ class TaskList extends FBP(LitElement) {
     this.empty = '';
   }
 
+  /**
+   * Reloads the list
+   *
+   */
   refresh(e) {
     this._FBPTriggerWire('--refreshRequested', e);
   }
+
+  /**
+   * select item from list by setting the task id (tsk)
+   * @param tsk
+   */
+  selectTaskId(tsk) {
+    this._FBPTriggerWire('--selectedTSK', tsk);
+  }
+
 
   /**
    * @private
@@ -141,7 +154,7 @@ class TaskList extends FBP(LitElement) {
         </furo-search-input>
 
         <div class="list" flex scroll @-list-item-clicked="--itemClicked">
-          <template
+          <flow-repeat
             is="flow-repeat"
             ƒ-inject-items="--collectionResponse(*.entities)"
             ƒ-select="--itemSelected, --itemClicked"
@@ -149,15 +162,19 @@ class TaskList extends FBP(LitElement) {
             ƒ-deselect="--addClicked"
             ƒ-select-previous-index="--arrowUp"
             ƒ-select-next-index="--arrowDown"
+            identity-path="data.id"
+            ƒ-select-identity="--selectedTSK"
           >
-            <task-list-item
-              ƒ-inject="--item"
-              ƒ-trigger="--trigger"
-              ƒ-select="--itemSelected"
-              ƒ-deselect="--itemDeSelected"
-              ƒ-.index="--index"
-            ></task-list-item>
-          </template>
+            <template>
+              <task-list-item
+                ƒ-inject="--item"
+                ƒ-trigger="--trigger"
+                ƒ-select="--itemSelected"
+                ƒ-deselect="--itemDeSelected"
+                ƒ-.index="--index"
+              ></task-list-item>
+            </template>
+          </flow-repeat>
         </div>
       </furo-vertical-flex>
       <furo-de-bounce ƒ-input-wire="--searchStringEntered" @-out="--debouncedSrch"></furo-de-bounce>

@@ -1,6 +1,6 @@
-import { LitElement, html, css } from 'lit-element';
-import { Theme } from '@furo/framework/src/theme.js';
-import { FBP } from '@furo/fbp';
+import {LitElement, html, css} from 'lit-element';
+import {Theme} from '@furo/framework/src/theme.js';
+import {FBP} from '@furo/fbp';
 import '../../project_components/tasks/task-list.js';
 
 /**
@@ -22,7 +22,7 @@ class TaskNavigation extends FBP(LitElement) {
       /**
        * Description
        */
-      myBool: { type: Boolean },
+      myBool: {type: Boolean},
     };
   }
 
@@ -36,6 +36,14 @@ class TaskNavigation extends FBP(LitElement) {
 
   refresh(d) {
     this._FBPTriggerWire('--refreshRequested', d);
+  }
+
+  /**
+   * select item from list by setting the task id (tsk)
+   * @param tsk
+   */
+  selectTaskId(tsk) {
+    this._FBPTriggerWire('--selectedTSK', tsk);
   }
 
   /**
@@ -73,6 +81,7 @@ class TaskNavigation extends FBP(LitElement) {
       <furo-vertical-flex>
         <task-list
           items="30"
+          ƒ-select-task-id="--selectedTSK"
           flex
           ƒ-refresh="--refreshRequested"
           @-task-list-item="--rawTaskEntity(*.detail.links)"

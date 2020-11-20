@@ -11,8 +11,8 @@ import '@furo/layout/src/furo-panel.js';
 import '@furo/navigation/src/furo-panel-head.js';
 import '@furo/data/src/furo-entity-agent.js';
 import '@furo/data/src/furo-data-object.js';
-import './task-task-form.js';
-import './task-task-update-action.js';
+import './task-form.js';
+import './task-update-action.js';
 
 /**
  * Doing nothing is very hard to do… you never know when you’re finished.
@@ -25,7 +25,7 @@ did something.
  * @polymer
  * @appliesMixin FBP
  */
-export class TaskTaskUpdatePanel extends BasePanel {
+export class TaskUpdatePanel extends BasePanel {
   // Inject HATEOAS Link Object for the specific service.
   htsIn(d) {
     this._FBPTriggerWire('--htsIn', d);
@@ -83,13 +83,13 @@ export class TaskTaskUpdatePanel extends BasePanel {
         <!-- The main panel, this panel scrolls -->
         <furo-panel no-margin flex scroll>
           <!-- The form for the type task.Task -->
-          <task-task-form ƒ-bind-data="--entity(*.data)"></task-task-form>
+          <task-form ƒ-bind-data="--entity(*.data)"></task-form>
         </furo-panel>
 
         <!-- This panel stays on the bottom of the page -->
         <furo-panel no-margin>
           <!-- The events of the updateaction are mostly wired to the entity-agent below -->
-          <task-task-update-action
+          <task-update-action
             @-delete-req="--deleteReq"
             @-reset-req="--resetReq"
             @-self-req="--selfReq"
@@ -97,7 +97,7 @@ export class TaskTaskUpdatePanel extends BasePanel {
             ƒ-bind-entity="--entity"
             ƒ-disable-all="--requestStarted"
             ƒ-enable-all="--response, --responseError"
-          ></task-task-update-action>
+          ></task-update-action>
         </furo-panel>
       </furo-vertical-flex>
 
@@ -106,7 +106,6 @@ export class TaskTaskUpdatePanel extends BasePanel {
         dismiss-button-text="${i18n.t('banner.action.close')}"
         icon="error-outline"
         ƒ-parse-grpc-status="--error"
-        ƒ-show="--error"
       ></furo-banner>
 
       <!-- Agent for the service Tasks -->
@@ -135,4 +134,4 @@ export class TaskTaskUpdatePanel extends BasePanel {
   }
 }
 
-window.customElements.define('task-task-update-panel', TaskTaskUpdatePanel);
+window.customElements.define('task-update-panel', TaskUpdatePanel);

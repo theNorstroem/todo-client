@@ -20,7 +20,7 @@ did something.
  * @polymer
  * @appliesMixin FBP
  */
-export class TaskTaskUpdateAction extends FBP(LitElement) {
+export class TaskUpdateAction extends FBP(LitElement) {
   // Bind an entity data object. This will be forwarded to the furo-button-bar element inside this element.
   bindEntity(d) {
     this._FBPTriggerWire('--entityObjectInjected', d);
@@ -105,4 +105,4 @@ export class TaskTaskUpdateAction extends FBP(LitElement) {
   }
 }
 
-window.customElements.define('task-task-update-action', TaskTaskUpdateAction);
+window.customElements.define('task-update-action', TaskUpdateAction);

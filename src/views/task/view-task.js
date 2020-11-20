@@ -2,6 +2,8 @@ import { LitElement, html, css } from 'lit-element';
 import { Theme } from '@furo/framework/src/theme.js';
 import { FBP } from '@furo/fbp';
 import '@furo/layout/src/furo-resizer.js';
+import '@furo/notification/src/furo-banner.js';
+import '@furo/notification/src/furo-banner-display.js';
 import './task-navigation.js';
 import './task-detail.js';
 
@@ -79,8 +81,14 @@ class ViewTask extends FBP(LitElement) {
         </furo-app-bar-top>
 
         <furo-horizontal-flex flex>
-          <furo-resizer righthandle="" style="width: 260px;border-right: 1px solid var(--separator,#FAFAFA)" minwidth="260" maxwidth="480" remember="view-task-navigation">
-            <task-navigation ƒ-refresh="--pageEntered"></task-navigation>
+          <furo-resizer
+            righthandle=""
+            style="width: 260px;border-right: 1px solid var(--separator,#FAFAFA)"
+            minwidth="260"
+            maxwidth="480"
+            remember="view-task-navigation"
+          >
+            <task-navigation ƒ-refresh="--pageEntered" ƒ-select-task-id="--locationChanged(*.query.tsk)"></task-navigation>
           </furo-resizer>
           <task-detail flex ƒ-set-qp="--locationChanged(*.query)"></task-detail>
         </furo-horizontal-flex>

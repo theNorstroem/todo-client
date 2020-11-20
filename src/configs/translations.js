@@ -2,7 +2,7 @@ export const Translations = {
   en: {},
   'en-US': {},
   'de-DE': {
-      form: {
+    form: {
       task: {
         task: {
           wraps: {

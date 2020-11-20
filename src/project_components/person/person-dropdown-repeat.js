@@ -113,7 +113,7 @@ export class PersonDropdownRepeat extends FBP(LitElement) {
       <furo-data-repeat
         delete-icon="delete"
         condensed
-        repeated-component="person-person-reference-dropdown"
+        repeated-component="person-reference-dropdown"
         ƒ-bind-data="--data"
         ƒ-add="--adderTriggered"
         focus-on-create
@@ -124,10 +124,7 @@ export class PersonDropdownRepeat extends FBP(LitElement) {
         <span flex></span>
 
         <!-- It is a good practice to set a description -->
-        <furo-button
-          label="add involved persons"
-          @-click="--adderTriggered(park)"
-        ></furo-button>
+        <furo-button label="add involved persons" @-click="--adderTriggered(park)"></furo-button>
       </furo-horizontal-flex>
     `;
   }

@@ -9,7 +9,7 @@ import { i18n } from '@furo/framework/src/i18n.js';
 import '@furo/data-input';
 import '@furo/form';
 import '../task-task-reference-search.js';
-import '../../person/person-person-reference-dropdown.js';
+import '../../person/person-reference-dropdown.js';
 import '../../string-repeat.js';
 import '../../person/person-dropdown-repeat.js';
 
@@ -21,7 +21,7 @@ import '../../person/person-dropdown-repeat.js';
  * @polymer
  * @appliesMixin FBP
  */
-export class TaskTaskForm extends FBP(LitElement) {
+export class TaskForm extends FBP(LitElement) {
   /**
    * @private
    * @return {Object}
@@ -133,11 +133,11 @@ export class TaskTaskForm extends FBP(LitElement) {
           ></furo-data-date-input>
 
           <!-- field: responsible_person -->
-          <person-person-reference-dropdown
+          <person-reference-dropdown
             condensed
             double
             ƒ-bind-data="--data(*.responsible_person)"
-          ></person-person-reference-dropdown>
+          ></person-reference-dropdown>
 
           <!-- field: checklist -->
           <string-repeat
@@ -161,4 +161,4 @@ export class TaskTaskForm extends FBP(LitElement) {
   }
 }
 
-window.customElements.define('task-task-form', TaskTaskForm);
+window.customElements.define('task-form', TaskForm);

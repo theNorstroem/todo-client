@@ -18,7 +18,7 @@ import '@furo/data-input';
  * @polymer
  * @appliesMixin FBP
  */
-export class PersonPersonReferenceDropdown extends FBP(LitElement) {
+export class PersonReferenceDropdown extends FBP(LitElement) {
   /**
    * @private
    * @return {Object}
@@ -111,4 +111,4 @@ export class PersonPersonReferenceDropdown extends FBP(LitElement) {
   }
 }
 
-window.customElements.define('person-person-reference-dropdown', PersonPersonReferenceDropdown);
+window.customElements.define('person-reference-dropdown', PersonReferenceDropdown);
