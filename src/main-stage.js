@@ -37,9 +37,6 @@ class MainStage extends FBP(LitElement) {
      */
     this._FBPAddWireHook('--locationChanged', async e => {
       switch (e.pathSegments[0]) {
-        case 'lazy-loaded':
-          await import('./views/view-lazy-loaded.js');
-          break;
 
         case 'task':
           await import('./views/task/view-task.js');
