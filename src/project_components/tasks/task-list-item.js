@@ -102,6 +102,7 @@ class TaskListItem extends FBP(LitElement) {
       p {
         margin: 0;
         font-weight: normal;
+        line-height: 1.5em;
       }
     `
   }

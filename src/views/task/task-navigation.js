@@ -51,7 +51,7 @@ class TaskNavigation extends FBP(LitElement) {
         display: block;
         background: var(--surface);
         height: 100%;
-        padding: 0 var(--spacing);
+        padding: 0 var(--spacing-s, 16px);
       }
 
       :host([hidden]) {
@@ -70,9 +70,16 @@ class TaskNavigation extends FBP(LitElement) {
     // language=HTML
     return html`
       <furo-vertical-flex>
-        <task-list flex ƒ-refresh="--refreshRequested"></task-list>
+        <task-list items="30" flex ƒ-refresh="--refreshRequested" @-task-list-item="--rawTaskEntity(*.detail.links)"></task-list>
       </furo-vertical-flex>
 
+      <furo-reverse-deep-link
+        service="Tasks"
+        rel="self" @-converted="--taskQP"
+        ƒ-convert="--rawTaskEntity"
+      ></furo-reverse-deep-link>
+
+      <furo-app-flow ƒ-emit="--taskQP" event="show-task-requested"></furo-app-flow>
     `;
   }
 }

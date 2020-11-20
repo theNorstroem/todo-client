@@ -17,6 +17,11 @@ import "./task-list-item.js"
  */
 class TaskList extends FBP(LitElement) {
 
+  constructor(props) {
+    super(props);
+
+  }
+
 
   /**
    * flow is ready lifecycle method
@@ -29,6 +34,22 @@ class TaskList extends FBP(LitElement) {
 
   refresh(e) {
     this._FBPTriggerWire("--refreshRequested", e)
+  }
+
+
+
+
+  /**
+   * @private
+   * @return {Object}
+   */
+  static get properties() {
+    return {
+      /**
+       * Number of items to display at once
+       */
+      items: {type: Number}
+    };
   }
 
   /**
@@ -150,7 +171,7 @@ class TaskList extends FBP(LitElement) {
       <furo-de-bounce ƒ-input-wire="--searchStringEntered" @-out="--debouncedSrch"></furo-de-bounce>
       <furo-de-bounce wait="750" ƒ-input-wire="--escapePressed" @-out="--debouncedEscape"></furo-de-bounce>
 
-      <furo-collection-agent page-size="13" ƒ-search="--debouncedSrch" ƒ-clear-search="--debouncedEscape" service="Tasks" ƒ-list="--refreshRequested"
+      <furo-collection-agent page-size="${this.items}" ƒ-search="--debouncedSrch" ƒ-clear-search="--debouncedEscape" service="Tasks" ƒ-list="--refreshRequested"
                              ƒ-hts-in="--TasksHTS" list-on-hts-in
                              @-response="--collectionResponse"></furo-collection-agent>
       <furo-deep-link service="Tasks" ƒ-trigger="--FBPready" @-hts-out="--TasksHTS"></furo-deep-link>

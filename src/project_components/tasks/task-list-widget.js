@@ -66,7 +66,7 @@ class TaskListWidget extends FBP(LitElement) {
     return html`
       <furo-card header-text="Current Tasks">
 
-       <task-list ƒ-refresh="--refreshRequested, --refreshBtnClicked" @-task-list-item="--rawTaskEntity"></task-list>
+       <task-list items="8" ƒ-refresh="--refreshRequested, --refreshBtnClicked" @-task-list-item="--rawTaskEntity"></task-list>
 
         <furo-horizontal-flex space slot="action">
           <!-- The button triggers the wire @-click="--refreshBtnClicked". This only says, that the button was clicked. The button does not have to know something -->
