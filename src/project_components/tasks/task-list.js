@@ -156,14 +156,6 @@ class TaskList extends FBP(LitElement) {
       <furo-deep-link service="Tasks" ƒ-trigger="--FBPready" @-hts-out="--TasksHTS"></furo-deep-link>
 
 
-      <furo-reverse-deep-link
-        service="Ersatzteil"
-        rel="self" @-converted="--itemQp"
-        ƒ-convert="--listItemclicked(*.links), --ersatzteilCreated(*.links)"
-      ></furo-reverse-deep-link>
-
-      <!-- wir schreiben die QP in die URL -->
-      <furo-qp-changer clear="sco,est" ƒ-set-qp="--itemQp,--addQp"></furo-qp-changer>
     `;
   }
 }

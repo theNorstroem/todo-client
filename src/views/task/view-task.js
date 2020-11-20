@@ -1,6 +1,8 @@
 import {LitElement, html, css} from 'lit-element';
 import {Theme} from "@furo/framework/src/theme.js"
 import {FBP} from "@furo/fbp";
+import "@furo/layout/src/furo-resizer.js"
+import "./task-navigation.js"
 
 /**
  * `view-task`
@@ -45,13 +47,15 @@ class ViewTask extends FBP(LitElement) {
   static get styles() {
     // language=CSS
     return Theme.getThemeForComponent('ViewTask') || css`
-        :host {
-            display: block;
-        }
+      :host {
+        display: block;
+        height: 100vh;
+      }
 
-        :host([hidden]) {
-            display: none;
-        }
+      :host([hidden]) {
+        display: none;
+      }
+
     `
   }
 
@@ -65,21 +69,20 @@ class ViewTask extends FBP(LitElement) {
     // language=HTML
     return html`
       <furo-vertical-flex>
-        <furo-app-bar-top navigation-icon="arrow-back"  @-navigation-clicked="--navBackClicked" drawer="main-drawer">
+        <furo-app-bar-top navigation-icon="arrow-back" @-navigation-clicked="--navBackClicked" drawer="main-drawer">
           <div>Tasks</div>
           <furo-empty-spacer></furo-empty-spacer>
           <furo-icon-button icon="settings" @-click="--settings"></furo-icon-button>
-
         </furo-app-bar-top>
-        <div flex  >
+
+        <furo-horizontal-flex  flex>
+          <furo-resizer righthandle="" maxwidth="480">
+            <task-navigation ƒ-refresh="--pageEntered" ></task-navigation>
+          </furo-resizer>
+          <div flex> sss</div>
+        </furo-horizontal-flex>
 
 
-          <p>Hej, welcome</p>
-
-
-
-
-        </div>
       </furo-vertical-flex>
 
       <furo-app-flow ƒ-trigger="--navBackClicked" event="exit-tasks"></furo-app-flow>
