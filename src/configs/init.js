@@ -35,11 +35,9 @@ import './my_theme.js';
 // -- register resource bundle i18n
 import { Translations } from './translations.js';
 
-
 // register the available types (only needed if you work with @furo/data... components  )
 Init.registerApiServices(Services);
 Init.registerApiTypes(Types);
-
 
 // then add / register the type
 Init.addApiTypeSpec('navigation.Navigationnode', spec);

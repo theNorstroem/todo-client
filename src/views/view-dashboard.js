@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit-element';
-import { i18n, Theme } from '@furo/framework/src/furo.js';
+import { Theme } from '@furo/framework/src/theme.js';
 import { FBP } from '@furo/fbp';
 
 import '@furo/layout/src/furo-vertical-flex.js';
@@ -10,8 +10,8 @@ import '@furo/form/src/furo-form.js';
 import '@furo/input/src/furo-icon-button.js';
 import '@furo/notification/src/furo-snackbar.js';
 import '@furo/util/src/furo-pretty-json.js';
-import '../project_components/tasks/task-creator-widget.js'
-import '../project_components/tasks/task-list-widget.js'
+import '../project_components/tasks/task-creator-widget.js';
+import '../project_components/tasks/task-list-widget.js';
 /**
  * `view-dashboard`
  * todo Describe your element
@@ -63,7 +63,6 @@ class ViewDashboard extends FBP(LitElement) {
           display: none;
         }
 
-
         .autogrid > * {
           grid-column-end: span 2;
           grid-row-end: span 2;
@@ -74,12 +73,10 @@ class ViewDashboard extends FBP(LitElement) {
         .autogrid > *[double] {
           grid-column-end: span 4;
           grid-row-end: span 3;
-
         }
 
         .autogrid > *[high] {
           grid-row-end: span 4;
-
         }
 
         .autogrid {
@@ -119,16 +116,15 @@ class ViewDashboard extends FBP(LitElement) {
           ></furo-snackbar>
         </furo-app-bar-top>
         <div flex scroll class="autogrid">
-
-          <task-creator-widget ƒ-focus="--FBPready" @-create-success="--taskCreated"></task-creator-widget>
+          <task-creator-widget
+            ƒ-focus="--FBPready"
+            @-create-success="--taskCreated"
+          ></task-creator-widget>
           <task-list-widget high ƒ-refresh="--taskCreated"></task-list-widget>
 
           <div>Person List</div>
           <div>Message</div>
           <div></div>
-
-
-
         </div>
       </furo-vertical-flex>
     `;

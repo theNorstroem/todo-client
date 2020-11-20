@@ -1,7 +1,7 @@
-import {LitElement, html, css} from 'lit-element';
-import {FBP} from '@furo/fbp';
-import {Theme} from '@furo/framework/src/theme.js';
-import {Styling} from './configs/styling.js';
+import { LitElement, html, css } from 'lit-element';
+import { FBP } from '@furo/fbp';
+import { Theme } from '@furo/framework/src/theme.js';
+import { Styling } from './configs/styling.js';
 
 import '@furo/input/src/furo-button.js';
 import '@furo/route/src/furo-location.js';
@@ -16,7 +16,6 @@ import './menu/main-menu.js';
  * Static imports of the views
  * The lazy imports a below in _FBPReady
  */
-
 
 import './views/view-dashboard.js';
 import './views/view-auth.js';

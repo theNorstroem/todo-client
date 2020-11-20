@@ -1,6 +1,6 @@
-import {LitElement, html, css} from 'lit-element';
-import {Theme} from "@furo/framework/src/theme.js"
-import {FBP} from "@furo/fbp";
+import { LitElement, html, css } from 'lit-element';
+import { Theme } from '@furo/framework/src/theme.js';
+import { FBP } from '@furo/fbp';
 
 /**
  * `task-list-item`
@@ -11,13 +11,11 @@ import {FBP} from "@furo/fbp";
  * @appliesMixin FBP
  */
 class TaskListItem extends FBP(LitElement) {
-
   constructor() {
     super();
 
     this.data = {}; // we set data as empty object, because we use it in the template. Otherwise we will get "undefined" errors.
   }
-
 
   /**
    * @private
@@ -28,7 +26,7 @@ class TaskListItem extends FBP(LitElement) {
       /**
        * mark the element as selected
        */
-      selected: {type: Boolean, reflect: true}
+      selected: { type: Boolean, reflect: true },
     };
   }
 
@@ -38,7 +36,7 @@ class TaskListItem extends FBP(LitElement) {
    */
   select() {
     this.selected = true;
-    this.scrollIntoViewIfNeeded()
+    this.scrollIntoViewIfNeeded();
   }
 
   /**
@@ -50,19 +48,16 @@ class TaskListItem extends FBP(LitElement) {
     this.selected = false;
   }
 
-
   trigger() {
     /**
      * @event task-list-item
      * Fired when A item is clicked/triggered
      * detail payload: the raw entity of the item
      */
-    let customEvent = new Event('task-list-item', {composed: true, bubbles: true});
+    const customEvent = new Event('task-list-item', { composed: true, bubbles: true });
     customEvent.detail = this.entity;
-    this.dispatchEvent(customEvent)
-
+    this.dispatchEvent(customEvent);
   }
-
 
   /**
    * flow is ready lifecycle method
@@ -84,29 +79,30 @@ class TaskListItem extends FBP(LitElement) {
    */
   static get styles() {
     // language=CSS
-    return Theme.getThemeForComponent('TaskListItem') || css`
-      :host {
-        display: block;
-      }
+    return (
+      Theme.getThemeForComponent('TaskListItem') ||
+      css`
+        :host {
+          display: block;
+        }
 
-      :host([hidden]) {
-        display: none;
-      }
+        :host([hidden]) {
+          display: none;
+        }
 
+        .task {
+          font-size: 18px;
+          line-height: 36px;
+        }
 
-      .task {
-        font-size: 18px;
-        line-height: 36px;
-      }
-
-      p {
-        margin: 0;
-        font-weight: normal;
-        line-height: 1.5em;
-      }
-    `
+        p {
+          margin: 0;
+          font-weight: normal;
+          line-height: 1.5em;
+        }
+      `
+    );
   }
-
 
   /**
    * @private
@@ -116,10 +112,10 @@ class TaskListItem extends FBP(LitElement) {
   render() {
     // language=HTML
     return html`
-<div @-click="^^list-item-clicked(index)">
-     <div class="task">${this.data.display_name}</div>
-     <p> ${this.data.note}</p>
-</div>
+      <div @-click="^^list-item-clicked(index)">
+        <div class="task">${this.data.display_name}</div>
+        <p>${this.data.note}</p>
+      </div>
     `;
   }
 }

@@ -1,11 +1,11 @@
-import {LitElement, html, css} from 'lit-element';
-import {Theme} from "@furo/framework/src/theme.js"
-import {FBP} from "@furo/fbp";
-import "@furo/data/src/furo-deep-link.js"
-import "@furo/timing/src/furo-de-bounce.js"
-import "@furo/util/src/furo-keydown.js"
-import "@furo/util/src/furo-navigation-pad.js"
-import "./task-list-item.js"
+import { LitElement, html, css } from 'lit-element';
+import { Theme } from '@furo/framework/src/theme.js';
+import { FBP } from '@furo/fbp';
+import '@furo/data/src/furo-deep-link.js';
+import '@furo/timing/src/furo-de-bounce.js';
+import '@furo/util/src/furo-keydown.js';
+import '@furo/util/src/furo-navigation-pad.js';
+import './task-list-item.js';
 
 /**
  * `task-list`
@@ -16,28 +16,18 @@ import "./task-list-item.js"
  * @appliesMixin FBP
  */
 class TaskList extends FBP(LitElement) {
-
-  constructor(props) {
-    super(props);
-
-  }
-
-
   /**
    * flow is ready lifecycle method
    */
   _FBPReady() {
-    //this._FBPTraceWires()
+    // this._FBPTraceWires()
     super._FBPReady();
-    this.empty = "";
+    this.empty = '';
   }
 
   refresh(e) {
-    this._FBPTriggerWire("--refreshRequested", e)
+    this._FBPTriggerWire('--refreshRequested', e);
   }
-
-
-
 
   /**
    * @private
@@ -48,7 +38,7 @@ class TaskList extends FBP(LitElement) {
       /**
        * Number of items to display at once
        */
-      items: {type: Number}
+      items: { type: Number },
     };
   }
 
@@ -59,72 +49,73 @@ class TaskList extends FBP(LitElement) {
    */
   static get styles() {
     // language=CSS
-    return Theme.getThemeForComponent('TaskList') || css`
-      :host {
-        display: block;
-      }
+    return (
+      Theme.getThemeForComponent('TaskList') ||
+      css`
+        :host {
+          display: block;
+        }
 
-      :host([hidden]) {
-        display: none;
-      }
+        :host([hidden]) {
+          display: none;
+        }
 
-      furo-search-input {
-        width: 100%;
-      }
+        furo-search-input {
+          width: 100%;
+        }
 
-      /** general list item **/
-      .list > * {
-        min-height: 40px;
-        line-height: 40px;
-        margin-bottom: var(--spacing-xxs, 4px);
-        letter-spacing: 0.01785714em;
-        font-size: 0.875rem;
-        font-weight: 500;
-        padding: 0 var(--spacing-xs);
-        transition: all 0.2s;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+        /** general list item **/
+        .list > * {
+          min-height: 40px;
+          line-height: 40px;
+          margin-bottom: var(--spacing-xxs, 4px);
+          letter-spacing: 0.01785714em;
+          font-size: 0.875rem;
+          font-weight: 500;
+          padding: 0 var(--spacing-xs);
+          transition: all 0.2s;
+          border-radius: 4px;
+          cursor: pointer;
+        }
 
-      .list > *:hover {
-        background-color: rgba(var(--primary-rgb), var(--state-hover));
-        color: var(--primary);
-      }
+        .list > *:hover {
+          background-color: rgba(var(--primary-rgb), var(--state-hover));
+          color: var(--primary);
+        }
 
-      .list > *[selected] {
-        background-color: rgba(var(--primary-rgb), var(--state-selected));
-        color: var(--primary);
-      }
+        .list > *[selected] {
+          background-color: rgba(var(--primary-rgb), var(--state-selected));
+          color: var(--primary);
+        }
 
-      .list > *[selected]:focus {
-        background-color: rgba(var(--primary-rgb), var(--state-selected-focus));
-        color: var(--primary);
-      }
+        .list > *[selected]:focus {
+          background-color: rgba(var(--primary-rgb), var(--state-selected-focus));
+          color: var(--primary);
+        }
 
-      .list > *[selected]:hover {
-        background-color: rgba(var(--primary-rgb), var(--state-selected-hover));
-        color: var(--primary);
-      }
+        .list > *[selected]:hover {
+          background-color: rgba(var(--primary-rgb), var(--state-selected-hover));
+          color: var(--primary);
+        }
 
-      .list > *:focus-within {
-        background-color: rgba(var(--primary-rgb), var(--state-focus));
-        color: var(--primary);
-        outline: none;
-      }
+        .list > *:focus-within {
+          background-color: rgba(var(--primary-rgb), var(--state-focus));
+          color: var(--primary);
+          outline: none;
+        }
 
-      .list > *:active,
-      .list > *[selected]:active {
-        background-color: rgba(var(--primary-rgb), var(--state-active));
-      }
+        .list > *:active,
+        .list > *[selected]:active {
+          background-color: rgba(var(--primary-rgb), var(--state-active));
+        }
 
-      .list > *[disabled] {
-        color: rgba(255, 255, 255, var(--state-disabled));
-        background-color: rgba(var(--primary-rgb), var(--state-disabled));
-      }
-
-    `
+        .list > *[disabled] {
+          color: rgba(255, 255, 255, var(--state-disabled));
+          background-color: rgba(var(--primary-rgb), var(--state-disabled));
+        }
+      `
+    );
   }
-
 
   /**
    * @private
@@ -140,11 +131,13 @@ class TaskList extends FBP(LitElement) {
           @-arrow-up-pressed="--arrowUp"
           @-enter-pressed="--enterPressed"
           @-escape-pressed="--escapePressed(empty)"
-
         ></furo-navigation-pad>
 
-        <furo-search-input label="search" @-value-changed="--searchStringEntered" trailing-icon="filter-list">
-
+        <furo-search-input
+          label="search"
+          @-value-changed="--searchStringEntered"
+          trailing-icon="filter-list"
+        >
         </furo-search-input>
 
         <div class="list" flex scroll @-list-item-clicked="--itemClicked">
@@ -156,7 +149,6 @@ class TaskList extends FBP(LitElement) {
             ƒ-deselect="--addClicked"
             ƒ-select-previous-index="--arrowUp"
             ƒ-select-next-index="--arrowDown"
-
           >
             <task-list-item
               ƒ-inject="--item"
@@ -169,14 +161,27 @@ class TaskList extends FBP(LitElement) {
         </div>
       </furo-vertical-flex>
       <furo-de-bounce ƒ-input-wire="--searchStringEntered" @-out="--debouncedSrch"></furo-de-bounce>
-      <furo-de-bounce wait="750" ƒ-input-wire="--escapePressed" @-out="--debouncedEscape"></furo-de-bounce>
+      <furo-de-bounce
+        wait="750"
+        ƒ-input-wire="--escapePressed"
+        @-out="--debouncedEscape"
+      ></furo-de-bounce>
 
-      <furo-collection-agent page-size="${this.items}" ƒ-search="--debouncedSrch" ƒ-clear-search="--debouncedEscape" service="Tasks" ƒ-list="--refreshRequested"
-                             ƒ-hts-in="--TasksHTS" list-on-hts-in
-                             @-response="--collectionResponse"></furo-collection-agent>
-      <furo-deep-link service="Tasks" ƒ-trigger="--FBPready" @-hts-out="--TasksHTS"></furo-deep-link>
-
-
+      <furo-collection-agent
+        page-size="${this.items}"
+        ƒ-search="--debouncedSrch"
+        ƒ-clear-search="--debouncedEscape"
+        service="Tasks"
+        ƒ-list="--refreshRequested"
+        ƒ-hts-in="--TasksHTS"
+        list-on-hts-in
+        @-response="--collectionResponse"
+      ></furo-collection-agent>
+      <furo-deep-link
+        service="Tasks"
+        ƒ-trigger="--FBPready"
+        @-hts-out="--TasksHTS"
+      ></furo-deep-link>
     `;
   }
 }

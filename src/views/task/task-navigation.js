@@ -1,7 +1,7 @@
-import {LitElement, html, css} from 'lit-element';
-import {Theme} from "@furo/framework/src/theme.js"
-import {FBP} from "@furo/fbp";
-import "../../project_components/tasks/task-list.js"
+import { LitElement, html, css } from 'lit-element';
+import { Theme } from '@furo/framework/src/theme.js';
+import { FBP } from '@furo/fbp';
+import '../../project_components/tasks/task-list.js';
 
 /**
  * `task-navigation`
@@ -13,8 +13,6 @@ import "../../project_components/tasks/task-list.js"
  * @appliesMixin FBP
  */
 class TaskNavigation extends FBP(LitElement) {
-
-
   /**
    * @private
    * @return {Object}
@@ -24,7 +22,7 @@ class TaskNavigation extends FBP(LitElement) {
       /**
        * Description
        */
-      myBool: {type: Boolean}
+      myBool: { type: Boolean },
     };
   }
 
@@ -36,9 +34,10 @@ class TaskNavigation extends FBP(LitElement) {
     // this._FBPTraceWires()
   }
 
-  refresh(d){
-    this._FBPTriggerWire("--refreshRequested",d);
+  refresh(d) {
+    this._FBPTriggerWire('--refreshRequested', d);
   }
+
   /**
    * Themable Styles
    * @private
@@ -46,20 +45,22 @@ class TaskNavigation extends FBP(LitElement) {
    */
   static get styles() {
     // language=CSS
-    return Theme.getThemeForComponent('TaskNavigation') || css`
-      :host {
-        display: block;
-        background: var(--surface);
-        height: 100%;
-        padding: 0 var(--spacing-s, 16px);
-      }
+    return (
+      Theme.getThemeForComponent('TaskNavigation') ||
+      css`
+        :host {
+          display: block;
+          background: var(--surface);
+          height: 100%;
+          padding: 0 var(--spacing-s, 16px);
+        }
 
-      :host([hidden]) {
-        display: none;
-      }
-    `
+        :host([hidden]) {
+          display: none;
+        }
+      `
+    );
   }
-
 
   /**
    * @private
@@ -70,12 +71,18 @@ class TaskNavigation extends FBP(LitElement) {
     // language=HTML
     return html`
       <furo-vertical-flex>
-        <task-list items="30" flex ƒ-refresh="--refreshRequested" @-task-list-item="--rawTaskEntity(*.detail.links)"></task-list>
+        <task-list
+          items="30"
+          flex
+          ƒ-refresh="--refreshRequested"
+          @-task-list-item="--rawTaskEntity(*.detail.links)"
+        ></task-list>
       </furo-vertical-flex>
 
       <furo-reverse-deep-link
         service="Tasks"
-        rel="self" @-converted="--taskQP"
+        rel="self"
+        @-converted="--taskQP"
         ƒ-convert="--rawTaskEntity"
       ></furo-reverse-deep-link>
 

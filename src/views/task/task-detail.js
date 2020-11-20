@@ -1,8 +1,8 @@
-import {LitElement, html, css} from 'lit-element';
-import {Theme} from "@furo/framework/src/theme.js"
-import {FBP} from "@furo/fbp";
+import { LitElement, html, css } from 'lit-element';
+import { Theme } from '@furo/framework/src/theme.js';
+import { FBP } from '@furo/fbp';
 
-import "../../project_components/tasks/edit/task-task-update-panel.js"
+import '../../project_components/tasks/edit/task-task-update-panel.js';
 /**
  * `task-detail`
  * todo Describe your element
@@ -13,8 +13,6 @@ import "../../project_components/tasks/edit/task-task-update-panel.js"
  * @appliesMixin FBP
  */
 class TaskDetail extends FBP(LitElement) {
-
-
   /**
    * @private
    * @return {Object}
@@ -24,7 +22,7 @@ class TaskDetail extends FBP(LitElement) {
       /**
        * Description
        */
-      myBool: {type: Boolean}
+      myBool: { type: Boolean },
     };
   }
 
@@ -52,17 +50,19 @@ class TaskDetail extends FBP(LitElement) {
    */
   static get styles() {
     // language=CSS
-    return Theme.getThemeForComponent('TaskDetail') || css`
+    return (
+      Theme.getThemeForComponent('TaskDetail') ||
+      css`
         :host {
-            display: block;
+          display: block;
         }
 
         :host([hidden]) {
-            display: none;
+          display: none;
         }
-    `
+      `
+    );
   }
-
 
   /**
    * @private
@@ -74,14 +74,7 @@ class TaskDetail extends FBP(LitElement) {
     return html`
       <task-task-update-panel ƒ-hts-in="--hts"></task-task-update-panel>
 
-      <furo-deep-link
-        service="Tasks"
-        ƒ-qp-in="--queryParams"
-        @-hts-out="--hts"
-      ></furo-deep-link>
-
-
-
+      <furo-deep-link service="Tasks" ƒ-qp-in="--queryParams" @-hts-out="--hts"></furo-deep-link>
     `;
   }
 }

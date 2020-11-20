@@ -1,9 +1,9 @@
-import {LitElement, html, css} from 'lit-element';
-import {Theme} from "@furo/framework/src/theme.js"
-import {FBP} from "@furo/fbp";
-import "@furo/layout/src/furo-resizer.js"
-import "./task-navigation.js"
-import "./task-detail.js"
+import { LitElement, html, css } from 'lit-element';
+import { Theme } from '@furo/framework/src/theme.js';
+import { FBP } from '@furo/fbp';
+import '@furo/layout/src/furo-resizer.js';
+import './task-navigation.js';
+import './task-detail.js';
 
 /**
  * `view-task`
@@ -17,8 +17,6 @@ import "./task-detail.js"
  * @appliesMixin FBP
  */
 class ViewTask extends FBP(LitElement) {
-
-
   /**
    * @private
    * @return {Object}
@@ -28,7 +26,7 @@ class ViewTask extends FBP(LitElement) {
       /**
        * Description
        */
-      myBool: {type: Boolean}
+      myBool: { type: Boolean },
     };
   }
 
@@ -47,19 +45,20 @@ class ViewTask extends FBP(LitElement) {
    */
   static get styles() {
     // language=CSS
-    return Theme.getThemeForComponent('ViewTask') || css`
-      :host {
-        display: block;
-        height: 100vh;
-      }
+    return (
+      Theme.getThemeForComponent('ViewTask') ||
+      css`
+        :host {
+          display: block;
+          height: 100vh;
+        }
 
-      :host([hidden]) {
-        display: none;
-      }
-
-    `
+        :host([hidden]) {
+          display: none;
+        }
+      `
+    );
   }
-
 
   /**
    * @private
@@ -70,14 +69,18 @@ class ViewTask extends FBP(LitElement) {
     // language=HTML
     return html`
       <furo-vertical-flex>
-        <furo-app-bar-top navigation-icon="arrow-back" @-navigation-clicked="--navBackClicked" drawer="main-drawer">
+        <furo-app-bar-top
+          navigation-icon="arrow-back"
+          @-navigation-clicked="--navBackClicked"
+          drawer="main-drawer"
+        >
           <div>Tasks</div>
           <furo-empty-spacer></furo-empty-spacer>
         </furo-app-bar-top>
 
-        <furo-horizontal-flex  flex>
+        <furo-horizontal-flex flex>
           <furo-resizer righthandle="" maxwidth="480">
-            <task-navigation ƒ-refresh="--pageEntered" ></task-navigation>
+            <task-navigation ƒ-refresh="--pageEntered"></task-navigation>
           </furo-resizer>
           <task-detail flex ƒ-set-qp="--locationChanged(*.query)"></task-detail>
         </furo-horizontal-flex>
@@ -85,12 +88,10 @@ class ViewTask extends FBP(LitElement) {
 
       <furo-app-flow ƒ-trigger="--navBackClicked" event="exit-tasks"></furo-app-flow>
 
-
       <furo-location
         url-space-regex="${window.APPROOT}/task"
         @-location-changed="--locationChanged"
       ></furo-location>
-
     `;
   }
 }

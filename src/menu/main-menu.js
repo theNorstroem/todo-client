@@ -254,13 +254,9 @@ class MainMenu extends FBP(LitElement) {
             persons</a
           >
         </li>
-
       </ul>
       <div class="label">other stuff</div>
       <ul>
-
-
-
         <li>
           <a href="unknown">
             <furo-icon icon="extension"></furo-icon>
