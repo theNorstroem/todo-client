@@ -31,8 +31,10 @@ Login with user *demo*  and password *1234*
 ### Overview
 
 ```
-
-    :8080
+                              You are here.
+                             /
+                            /
+    :8080                  /
    +-------------------------+
    |                         |
    |       todo-client       |  <-----------------+
