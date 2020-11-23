@@ -41,6 +41,23 @@ class TaskList extends FBP(LitElement) {
     this._FBPTriggerWire('--selectedTSK', tsk);
   }
 
+  /**
+   * select prev item from list
+   * @param tsk
+   */
+  selectPrev(tsk) {
+    this._FBPTriggerWire('--selectPrevRequested', tsk);
+  }
+
+
+  /**
+   * select next item from list
+   * @param tsk
+   */
+  selectNext(tsk) {
+    this._FBPTriggerWire('--selectNextRequested', tsk);
+  }
+
 
   /**
    * @private
@@ -158,12 +175,12 @@ class TaskList extends FBP(LitElement) {
             is="flow-repeat"
             ƒ-inject-items="--collectionResponse(*.entities)"
             ƒ-select="--itemSelected, --itemClicked"
-            ƒ-trigger-selected="--enterPressed, --itemClicked"
             ƒ-deselect="--addClicked"
-            ƒ-select-previous-index="--arrowUp"
-            ƒ-select-next-index="--arrowDown"
+            ƒ-select-previous-index="--arrowUp,--selectPrevRequested"
+            ƒ-select-next-index="--arrowDown,--selectNextRequested"
             identity-path="data.id"
             ƒ-select-identity="--selectedTSK"
+            ƒ-trigger-selected="--enterPressed, --itemClicked,--selectPrevRequested"
           >
             <template>
               <task-list-item

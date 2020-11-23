@@ -70,6 +70,7 @@ class TaskListItem extends FBP(LitElement) {
   inject(rawentity) {
     this.data = rawentity.data; // we set data to data, because it is easyier to use in the template
     this.entity = rawentity; // we store the entity, because we will send it on the trigger action as payload.
+    this.requestUpdate();
   }
 
   /**

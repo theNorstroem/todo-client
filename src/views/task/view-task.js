@@ -37,7 +37,7 @@ class ViewTask extends FBP(LitElement) {
    */
   _FBPReady() {
     super._FBPReady();
-    // this._FBPTraceWires()
+     // this._FBPTraceWires()
   }
 
   /**
@@ -88,9 +88,18 @@ class ViewTask extends FBP(LitElement) {
             maxwidth="480"
             remember="view-task-navigation"
           >
-            <task-navigation ƒ-refresh="--pageEntered" ƒ-select-task-id="--locationChanged(*.query.tsk)"></task-navigation>
+            <task-navigation
+              ƒ-refresh="--pageEntered,--taskDeleted,--taskUpdated"
+              ƒ-select-prev="--taskDeleted"
+              ƒ-select-task-id="--locationChanged(*.query.tsk)"
+            ></task-navigation>
           </furo-resizer>
-          <task-detail flex ƒ-set-qp="--locationChanged(*.query)"></task-detail>
+          <task-detail
+            flex
+            ƒ-set-qp="--locationChanged(*.query)"
+            @-delete-success="--taskDeleted"
+            @-task-updated="--taskUpdated"
+          ></task-detail>
         </furo-horizontal-flex>
       </furo-vertical-flex>
 

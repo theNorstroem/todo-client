@@ -94,7 +94,6 @@ export class PersonReferenceDropdown extends FBP(LitElement) {
       <!-- It is a good practice to set a description -->
       <furo-data-collection-dropdown
         ?condensed="${this.condensed}"
-        display-field="display_name"
         ƒ-bind-data="--field-injected"
         ƒ-focus="--focused"
         ƒ-inject-entities="--collection(*.entities)"

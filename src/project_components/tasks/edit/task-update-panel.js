@@ -120,7 +120,8 @@ export class TaskUpdatePanel extends BasePanel {
         ƒ-delete="--deleteReq"
         ƒ-hts-in="--navNode(*._value.link), --htsIn"
         ƒ-load="--selfReq"
-        ƒ-put="--updateReq"
+        ƒ-save="--updateReq"
+        @-save-success="^^task-updated"
       ></furo-entity-agent>
 
       <!-- DAO for type task.TaskEntity -->
