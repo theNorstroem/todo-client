@@ -1,10 +1,12 @@
 # todo-client
-This is the client project of the todo app. This application is for educational (showing the concepts) purposes only.
+This is the client project of the [todo-server](https://github.com/theNorstroem/todo-server).
+ 
+This application is for educational (showing the concepts) purposes only.
 
 ## Usage
 Install the dependencies with `npm run install`.
  
-To start the development server just run `npm run start`. 
+To start the development server just run `npm run start`. DO NOT FORGET TO START THE SERVER TOO. 
 
 > This will start a dev. server on http://localhost:8080 with a proxy
 for `/api` which connects to :7001 (see the [illustration](#overview) below).
@@ -16,7 +18,9 @@ We make heavy use of the standards defined there. It is also a good idea to read
 ### What you should see when you start the client with the [todo-server](https://github.com/theNorstroem/todo-server)
 After starting the [server](https://github.com/theNorstroem/todo-server) and starting the client with `npm run start` you should see the development version of the client on http://localhost:8080.
  
- Login with user *demo*  and password *1234* 
+Login with user *demo*  and password *1234*
+
+  
 ![](assets/screen0.png)
 
 ---
