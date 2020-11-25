@@ -43,6 +43,11 @@ class MainStage extends FBP(LitElement) {
         default:
       }
     });
+
+    // fullscreen the complete stage if requested
+    this.addEventListener("fullscreen-requested",()=>{
+      this.requestFullscreen()
+    })
   }
 
   /**
@@ -89,6 +94,8 @@ class MainStage extends FBP(LitElement) {
         name="main-drawer"
         ƒ-close="--locationChanged"
         ƒ-open="--openNavClicked"
+        float
+        float-breakpoint="1600"
         @-open-drawer-menu-clicked="--openNavClicked"
       >
       <!-- We put the menu in the drawer (with slot=drawer) -->
