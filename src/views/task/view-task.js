@@ -37,7 +37,7 @@ class ViewTask extends FBP(LitElement) {
    */
   _FBPReady() {
     super._FBPReady();
-     // this._FBPTraceWires()
+    // this._FBPTraceWires()
   }
 
   /**
@@ -61,8 +61,8 @@ class ViewTask extends FBP(LitElement) {
         /**
          * we give a border color for the resizer.
          */
-        furo-resizer{
-          border-right: 1px solid var(--separator,#FAFAFA)
+        furo-resizer {
+          border-right: 1px solid var(--separator, #fafafa);
         }
       `
     );
@@ -87,7 +87,7 @@ class ViewTask extends FBP(LitElement) {
         </furo-app-bar-top>
 
         <furo-horizontal-flex flex>
-        <!-- we set the width by style because the resizer requires it that way. We set the remember value to keep the setted size from the user -->
+          <!-- we set the width by style because the resizer requires it that way. We set the remember value to keep the setted size from the user -->
           <furo-resizer
             righthandle=""
             style="width: 260px;"
@@ -95,7 +95,7 @@ class ViewTask extends FBP(LitElement) {
             maxwidth="480"
             remember="view-task-navigation"
           >
-          <!-- we set the selected task (tsk) from the query param  -->
+            <!-- we set the selected task (tsk) from the query param  -->
             <task-navigation
               ƒ-refresh="--pageEntered,--taskDeleted,--taskUpdated"
               ƒ-select-prev="--taskDeleted"

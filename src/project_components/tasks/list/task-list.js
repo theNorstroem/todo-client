@@ -49,7 +49,6 @@ class TaskList extends FBP(LitElement) {
     this._FBPTriggerWire('--selectPrevRequested', tsk);
   }
 
-
   /**
    * select next item from list
    * @param tsk
@@ -57,7 +56,6 @@ class TaskList extends FBP(LitElement) {
   selectNext(tsk) {
     this._FBPTriggerWire('--selectNextRequested', tsk);
   }
-
 
   /**
    * @private

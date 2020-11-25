@@ -45,9 +45,9 @@ class MainStage extends FBP(LitElement) {
     });
 
     // fullscreen the complete stage if requested
-    this.addEventListener("fullscreen-requested",()=>{
-      this.requestFullscreen()
-    })
+    this.addEventListener('fullscreen-requested', () => {
+      this.requestFullscreen();
+    });
   }
 
   /**
@@ -98,17 +98,14 @@ class MainStage extends FBP(LitElement) {
         float-breakpoint="1600"
         @-open-drawer-menu-clicked="--openNavClicked"
       >
-      <!-- We put the menu in the drawer (with slot=drawer) -->
+        <!-- We put the menu in the drawer (with slot=drawer) -->
         <main-menu
           slot="drawer"
           drawer="main-drawer"
           header-text="Title"
           secondary-text="Secondary text"
         ></main-menu>
-        <furo-pages
-          ƒ-inject-location="--locationChanged"
-          default="dashboard"
-        >
+        <furo-pages ƒ-inject-location="--locationChanged" default="dashboard">
           <!-- insert new pages here, furo pages will switch the correct view according to the url. -->
           <view-dashboard name="dashboard"></view-dashboard>
           <view-auth name="auth"></view-auth>
