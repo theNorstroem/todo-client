@@ -16,9 +16,8 @@ import './task-update-action.js';
 
 /**
  * Doing nothing is very hard to do… you never know when you’re finished.
-Having some tasks can help you a lot by giving you that comfortable feeling that you
-did something.
-
+ * Having some tasks can help you a lot by giving you that comfortable feeling that you
+ * did something.
  *
  * @summary todo: write summary
  * @customElement
@@ -124,7 +123,7 @@ export class TaskUpdatePanel extends BasePanel {
         @-save-success="^^task-updated"
       ></furo-entity-agent>
 
-      <!-- DAO for type task.TaskEntity -->
+      <!-- DO for type task.TaskEntity -->
       <furo-data-object
         type="task.TaskEntity"
         @-object-ready="--entity"

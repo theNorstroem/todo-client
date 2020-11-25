@@ -72,9 +72,11 @@ class TaskDetail extends FBP(LitElement) {
   render() {
     // language=HTML
     return html`
+      <!-- We want to display the banner messages at this position. -->
       <furo-banner-display></furo-banner-display>
+      <!-- the update panel requires the hts for the Tasks service. It is also possible just to pass in the queryParams and do the deep link inside of the update panel... -->
       <task-update-panel ƒ-hts-in="--hts"></task-update-panel>
-
+      <!-- We place the deep link here, because the update panel expects hateoas (ƒ-hts-in="--hts") -->
       <furo-deep-link service="Tasks" ƒ-qp-in="--queryParams" @-hts-out="--hts"></furo-deep-link>
     `;
   }

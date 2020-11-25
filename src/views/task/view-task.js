@@ -11,7 +11,7 @@ import './task-detail.js';
  * `view-task`
  * This view is here to edit an existing task.
  *
- * It gets the task to open and edit from the url (tsk)
+ *
  *
  * @summary edit a task
  * @customElement
@@ -58,6 +58,12 @@ class ViewTask extends FBP(LitElement) {
         :host([hidden]) {
           display: none;
         }
+        /**
+         * we give a border color for the resizer.
+         */
+        furo-resizer{
+          border-right: 1px solid var(--separator,#FAFAFA)
+        }
       `
     );
   }
@@ -81,19 +87,22 @@ class ViewTask extends FBP(LitElement) {
         </furo-app-bar-top>
 
         <furo-horizontal-flex flex>
+        <!-- we set the width by style because the resizer requires it that way. We set the remember value to keep the setted size from the user -->
           <furo-resizer
             righthandle=""
-            style="width: 260px;border-right: 1px solid var(--separator,#FAFAFA)"
+            style="width: 260px;"
             minwidth="260"
             maxwidth="480"
             remember="view-task-navigation"
           >
+          <!-- we set the selected task (tsk) from the query param  -->
             <task-navigation
               ƒ-refresh="--pageEntered,--taskDeleted,--taskUpdated"
               ƒ-select-prev="--taskDeleted"
               ƒ-select-task-id="--locationChanged(*.query.tsk)"
             ></task-navigation>
           </furo-resizer>
+          <!-- we pass in the query params from the location -->
           <task-detail
             flex
             ƒ-set-qp="--locationChanged(*.query)"
@@ -104,7 +113,7 @@ class ViewTask extends FBP(LitElement) {
       </furo-vertical-flex>
 
       <furo-app-flow ƒ-trigger="--navBackClicked" event="exit-tasks"></furo-app-flow>
-
+      <!-- Listen to changes in the URL if we are in /task -->
       <furo-location
         url-space-regex="${window.APPROOT}/task"
         @-location-changed="--locationChanged"

@@ -91,6 +91,7 @@ class MainStage extends FBP(LitElement) {
         ƒ-open="--openNavClicked"
         @-open-drawer-menu-clicked="--openNavClicked"
       >
+      <!-- We put the menu in the drawer (with slot=drawer) -->
         <main-menu
           slot="drawer"
           drawer="main-drawer"
@@ -100,16 +101,18 @@ class MainStage extends FBP(LitElement) {
         <furo-pages
           ƒ-inject-location="--locationChanged"
           default="dashboard"
-          @-response-error="--responseError"
         >
+          <!-- insert new pages here, furo pages will switch the correct view according to the url. -->
           <view-dashboard name="dashboard"></view-dashboard>
           <view-auth name="auth"></view-auth>
           <view-task name="task"></view-task>
           <view-404 name="404"></view-404>
         </furo-pages>
       </furo-app-drawer>
-
+      <!-- the snackbar display should stay at a high dom level, so it can be displayed on the complete screen -->
       <furo-snackbar-display></furo-snackbar-display>
+      <!-- furo location listens to url changes and fires on the wire --locationChanged, which is used by furo pages above and
+       on the hook in line 38 (lazy loader)-->
       <furo-location
         url-space-regex="${window.APPROOT}"
         @-location-changed="--locationChanged"

@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
 import { Theme } from '@furo/framework/src/theme.js';
 import { FBP } from '@furo/fbp';
-import '../../project_components/tasks/task-list.js';
+import '../../project_components/tasks/list/task-list.js';
 
 /**
  * `task-navigation`

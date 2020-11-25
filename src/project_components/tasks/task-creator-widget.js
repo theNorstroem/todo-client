@@ -8,7 +8,9 @@ import { i18n } from '@furo/framework/src/i18n.js';
 /**
  * `task-creator-widget`
  *
- *  A card that you can put on your dashboard or somewhere else, to create a task
+ *  A card that you can put on your dashboard or somewhere else, to create a task.
+ *
+ *
  *
  * @summary quick task creator widget
  * @customElement
@@ -98,6 +100,7 @@ class TaskCreatorWidget extends FBP(LitElement) {
           ></furo-button>
         </furo-horizontal-flex>
       </furo-card>
+
       <!-- The following components are not visible.  -->
 
       <!-- The data-object will fire object-ready as soon it is ready, we put the response on the --taskDO wire. -->
