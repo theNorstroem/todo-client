@@ -18,10 +18,7 @@ describe('view-task', () => {
     // navigation = taskview.shadowRoot.querySelector(('task-navigation'))
   });
 
-
   it('should...', done => {
-
-
     done();
   });
 });

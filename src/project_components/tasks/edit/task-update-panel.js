@@ -114,15 +114,13 @@ export class TaskUpdatePanel extends BasePanel {
         @-fatal-error="--error, ^^activity-stopped"
         @-request-started="--requestStarted, ^^activity-started"
         @-load-success="--response, ^^activity-stopped"
-        @-save-success="--response, ^^activity-stopped"
-
+        @-save-success="--response, ^^activity-stopped, ^^task-updated"
         @-response-error="--error, ^^activity-stopped"
         ƒ-bind-request-data="--entity(*.data)"
         ƒ-delete="--deleteReq"
         ƒ-hts-in="--navNode(*._value.link), --htsIn"
         ƒ-load="--selfReq"
         ƒ-save="--updateReq"
-        @-save-success="^^task-updated"
       ></furo-entity-agent>
 
       <!-- DO for type task.TaskEntity -->
