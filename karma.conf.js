@@ -9,6 +9,7 @@ module.exports = config => {
       _browsers: ['Chrome'], // remove the underscore to activate browser tests
       proxies: {
         '/src/configs/flowConfig.json': '/base/src/configs/flowConfig.json',
+        '/src/configs/init.js': '/base/src/configs/init.js',
         '/assets/images/hamburg.jpg': '/base/assets/images/hamburg.jpg',
         '/dashboard': '/base/index.html',
       },

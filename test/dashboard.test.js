@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { fixture, html } from '@open-wc/testing';
+import '../src/configs/init.js';
 import '../src/views/view-dashboard.js';
 
 describe('view-dashboard', () => {
