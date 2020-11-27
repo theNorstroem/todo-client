@@ -13,13 +13,18 @@ describe('view-dashboard', () => {
       `,
     );
     await dashboard.updateComplete;
-    contentArea = dashboard.shadowRoot.querySelector('.content');
+
   });
 
-  it('should have 3 cards', done => {
-    const els = contentArea.querySelectorAll('furo-card');
-    assert.equal(els.length, 3);
+  it('should have the task-creator-widget', done => {
+    const w = dashboard.shadowRoot.querySelectorAll(('task-creator-widget'))
+    assert.equal(w.length, 1);
+    done();
+  });
 
+  it('should have a task-list-widget', done => {
+    const w = dashboard.shadowRoot.querySelectorAll(('task-list-widget'))
+    assert.equal(w.length, 1);
     done();
   });
 });
