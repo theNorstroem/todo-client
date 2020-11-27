@@ -22,7 +22,7 @@ export class StringRepeat extends FBP(LitElement) {
     super();
     this.field = {};
     this.labelAdd = 'add item';
-    this.emptyString = '';
+    this.emptyString = "";
   }
 
   /**

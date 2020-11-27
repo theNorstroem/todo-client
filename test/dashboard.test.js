@@ -6,7 +6,6 @@ import '../src/views/view-dashboard.js';
 describe('view-dashboard', () => {
   window.APPROOT = '';
   let dashboard;
-  let contentArea;
   beforeEach(async () => {
     dashboard = await fixture(
       html`

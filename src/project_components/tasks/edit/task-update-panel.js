@@ -113,7 +113,9 @@ export class TaskUpdatePanel extends BasePanel {
         service="Tasks"
         @-fatal-error="--error, ^^activity-stopped"
         @-request-started="--requestStarted, ^^activity-started"
-        @-response="--response, ^^activity-stopped"
+        @-load-success="--response, ^^activity-stopped"
+        @-save-success="--response, ^^activity-stopped"
+
         @-response-error="--error, ^^activity-stopped"
         ƒ-bind-request-data="--entity(*.data)"
         ƒ-delete="--deleteReq"

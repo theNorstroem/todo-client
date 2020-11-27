@@ -2,11 +2,12 @@
 import { fixture, html } from '@open-wc/testing';
 import '../src/configs/init.js';
 import '../src/views/task/view-task.js';
+
 describe('view-task', () => {
   window.APPROOT = '';
   let taskview;
-  let navigation;
-  let contentArea;
+  // let navigation;
+
   beforeEach(async () => {
     taskview = await fixture(
       html`
@@ -14,7 +15,7 @@ describe('view-task', () => {
       `,
     );
     await taskview.updateComplete;
-    navigation = taskview.shadowRoot.querySelector(('task-navigation'))
+    // navigation = taskview.shadowRoot.querySelector(('task-navigation'))
   });
 
 

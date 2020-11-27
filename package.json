@@ -36,6 +36,9 @@
   "dependencies": {
     "@furo/collection": "^1.3.36"
   },
+  "peerDependencies": {
+    "lit-element": "^2.4.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
@@ -99,8 +102,8 @@
       "import/no-extraneous-dependencies": [
         "error",
         {
-          "devDependencies": false,
-          "optionalDependencies": false,
+          "devDependencies": true,
+          "optionalDependencies": true,
           "peerDependencies": true,
           "bundledDependencies": true,
           "packageDir": [
