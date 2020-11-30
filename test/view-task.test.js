@@ -9,11 +9,7 @@ describe('view-task', () => {
   // let navigation;
 
   beforeEach(async () => {
-    taskview = await fixture(
-      html`
-        <view-task style="height: 100vh"></view-task>
-      `,
-    );
+    taskview = await fixture(html` <view-task style="height: 100vh"></view-task> `);
     await taskview.updateComplete;
     // navigation = taskview.shadowRoot.querySelector(('task-navigation'))
   });

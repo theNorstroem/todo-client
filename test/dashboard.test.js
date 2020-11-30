@@ -7,11 +7,7 @@ describe('view-dashboard', () => {
   window.APPROOT = '';
   let dashboard;
   beforeEach(async () => {
-    dashboard = await fixture(
-      html`
-        <view-dashboard style="height: 100vh"></view-dashboard>
-      `,
-    );
+    dashboard = await fixture(html` <view-dashboard style="height: 100vh"></view-dashboard> `);
     await dashboard.updateComplete;
   });
 

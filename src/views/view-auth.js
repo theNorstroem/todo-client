@@ -74,7 +74,6 @@ class ViewAuth extends FBP(LitElement) {
               <furo-data-text-input
                 ƒ-bind-data="--auth(*.username)"
                 leading-icon="account-box"
-                autofocus
               ></furo-data-text-input>
               <furo-data-password-input
                 leading-icon="lock-outline"

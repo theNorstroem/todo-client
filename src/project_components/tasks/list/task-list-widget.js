@@ -14,7 +14,6 @@ import './task-list.js';
  * @appliesMixin FBP
  */
 class TaskListWidget extends FBP(LitElement) {
-
   constructor() {
     super();
 
@@ -33,7 +32,6 @@ class TaskListWidget extends FBP(LitElement) {
     this._FBPTriggerWire('--refreshRequested', e);
   }
 
-
   /**
    * @private
    * @return {Object}
@@ -43,10 +41,9 @@ class TaskListWidget extends FBP(LitElement) {
       /**
        * Number of items to show per page
        */
-      items: {type: Number}
+      items: { type: Number },
     };
   }
-
 
   /**
    * Themable Styles
