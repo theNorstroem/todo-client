@@ -7,14 +7,20 @@ import './task-list.js';
 
 /**
  * `task-list-widget`
- * todo Describe your element
+ *  A widget with pagination and search to show the n created tasks.
  *
- * @summary todo shortdescription
+ * @summary show latest tasks
  * @customElement
- * @demo demo-task-list-widget
  * @appliesMixin FBP
  */
 class TaskListWidget extends FBP(LitElement) {
+
+  constructor() {
+    super();
+
+    this.items = 5; // number of items to show per page
+  }
+
   /**
    * flow is ready lifecycle method
    */
@@ -26,6 +32,21 @@ class TaskListWidget extends FBP(LitElement) {
   refresh(e) {
     this._FBPTriggerWire('--refreshRequested', e);
   }
+
+
+  /**
+   * @private
+   * @return {Object}
+   */
+  static get properties() {
+    return {
+      /**
+       * Number of items to show per page
+       */
+      items: {type: Number}
+    };
+  }
+
 
   /**
    * Themable Styles
@@ -66,7 +87,7 @@ class TaskListWidget extends FBP(LitElement) {
     return html`
       <furo-card header-text="Current Tasks">
         <task-list
-          items="8"
+          items="${this.items}"
           ƒ-refresh="--refreshRequested, --refreshBtnClicked"
           @-task-list-item="--rawTaskEntity"
         ></task-list>
