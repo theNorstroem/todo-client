@@ -1,48 +1,61 @@
 /* eslint-disable */
-import cpy from 'rollup-plugin-cpy';
-import { createCompatibilityConfig } from '@open-wc/building-rollup';
+import merge from 'deepmerge';
+// use createSpaConfig for bundling a Single Page App
+import {createSpaConfig} from '@open-wc/building-rollup';
 
-const { generateSW } = require('rollup-plugin-workbox');
-
-// if you need to support IE11 use "modern-and-legacy-config" instead.
-const config = createCompatibilityConfig({
-  input: './index.html',
-  plugins: {
-    workbox: false,
-  },
-});
 const workboxConfig = require('./workbox-config.js');
+const {generateSW} = require('rollup-plugin-workbox');
 
-// if you use an array of configs, you don't need the copy task to be executed for both builds.
-// we can add the plugin only to the first rollup config:
-export default [
-  // add plugin to the first config
-  {
-    ...config[0],
-    plugins: [
-      ...config[0].plugins,
-      cpy({
-        // copy over all images files
-        files: [
-          'manifest.json',
-          'favicon.ico',
-          'assets/**/*',
-          'src/configs/**/*',
-          'robots.txt',
-          'api/trees/*.json', // remove this line, this is for demo purposes only
-        ],
-        dest: 'dist',
-        options: {
-          // parents makes sure to preserve the original folder structure
-          parents: true,
-        },
-      }),
-    ],
-  },
+import copy from 'rollup-plugin-copy';
 
-  // Add plugin to the second config (generateSW when everything is done)
-  {
-    ...config[1],
-    plugins: [...config[1].plugins, generateSW(workboxConfig)],
-  },
-];
+// use createBasicConfig to do regular JS to JS bundling
+// import { createBasicConfig } from '@open-wc/building-rollup';
+
+const baseConfig = createSpaConfig({
+  // use the outputdir option to modify where files are output
+  // outputDir: 'dist',
+
+  // if you need to support older browsers, such as IE11, set the legacyBuild
+  // option to generate an additional build just for this browser
+  // legacyBuild: true,
+
+  // development mode creates a non-minified build for debugging or development
+  developmentMode: process.env.ROLLUP_WATCH === 'true',
+
+  // set to true to inject the service worker registration into your index.html
+  injectServiceWorker: false,
+  // we use a separate workbox config (workbox-config.js)
+  workbox: false,
+});
+
+const copyConf = merge(baseConfig, {
+  plugins: [
+    copy({
+      targets: [
+        {src: 'assets/**/*', dest: 'dist/assets'},
+        {src: 'src/configs/flowConfig.json', dest: 'dist/src'},
+        {src: 'manifest.json', dest: 'dist'},
+        {src: 'favicon.ico', dest: 'dist'},
+        {src: 'robots.txt', dest: 'dist'}
+      ],
+      // set flatten to false to preserve folder structure
+      flatten: false,
+    })
+  ],
+  // alternatively, you can use your JS as entrypoint for rollup and
+  // optionally set a HTML template manually
+  // input: './app.js',
+});
+
+export default merge(copyConf, {
+  // if you use createSpaConfig, you can use your index.html as entrypoint,
+  // any <script type="module"> inside will be bundled by rollup
+  input: './index.html',
+
+  plugins: [
+    generateSW(workboxConfig)
+  ],
+  // alternatively, you can use your JS as entrypoint for rollup and
+  // optionally set a HTML template manually
+  // input: './app.js',
+});

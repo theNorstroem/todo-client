@@ -198,7 +198,6 @@ class TaskList extends FBP(LitElement) {
         ƒ-input-wire="--escapePressed"
         @-out="--debouncedEscape"
       ></furo-de-bounce>
-
       <furo-collection-agent
         page-size="${this.items}"
         ƒ-search="--debouncedSrch"
