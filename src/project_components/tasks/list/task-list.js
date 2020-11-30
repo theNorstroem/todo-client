@@ -165,6 +165,8 @@ class TaskList extends FBP(LitElement) {
           label="search"
           @-value-changed="--searchStringEntered"
           trailing-icon="filter-list"
+          ƒ-focus="--itemClicked"
+          float
         >
         </furo-search-input>
 

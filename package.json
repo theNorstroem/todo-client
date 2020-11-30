@@ -55,9 +55,7 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.34.0",
     "rollup-plugin-copy": "^3.3.0",
-    "rollup-plugin-cpy": "^2.0.1",
     "rollup-plugin-workbox": "^5.2.1",
-    "webpack-merge": "^5.4.0",
     "workbox-expiration": "^5.1.4"
   },
   "engines": {
