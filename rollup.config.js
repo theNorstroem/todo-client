@@ -1,10 +1,10 @@
 /* eslint-disable */
 import merge from 'deepmerge';
 // use createSpaConfig for bundling a Single Page App
-import {createSpaConfig} from '@open-wc/building-rollup';
+import { createSpaConfig } from '@open-wc/building-rollup';
 
 const workboxConfig = require('./workbox-config.js');
-const {generateSW} = require('rollup-plugin-workbox');
+const { generateSW } = require('rollup-plugin-workbox');
 
 import copy from 'rollup-plugin-copy';
 
@@ -32,15 +32,15 @@ const copyConf = merge(baseConfig, {
   plugins: [
     copy({
       targets: [
-        {src: 'assets/**/*', dest: 'dist/assets'},
-        {src: 'src/configs/flowConfig.json', dest: 'dist/src'},
-        {src: 'manifest.json', dest: 'dist'},
-        {src: 'favicon.ico', dest: 'dist'},
-        {src: 'robots.txt', dest: 'dist'}
+        { src: 'assets/**/*', dest: 'dist/assets' },
+        { src: 'src/configs/flowConfig.json', dest: 'dist/src' },
+        { src: 'manifest.json', dest: 'dist' },
+        { src: 'favicon.ico', dest: 'dist' },
+        { src: 'robots.txt', dest: 'dist' },
       ],
       // set flatten to false to preserve folder structure
       flatten: false,
-    })
+    }),
   ],
   // alternatively, you can use your JS as entrypoint for rollup and
   // optionally set a HTML template manually
@@ -52,9 +52,7 @@ export default merge(copyConf, {
   // any <script type="module"> inside will be bundled by rollup
   input: './index.html',
 
-  plugins: [
-    generateSW(workboxConfig)
-  ],
+  plugins: [generateSW(workboxConfig)],
   // alternatively, you can use your JS as entrypoint for rollup and
   // optionally set a HTML template manually
   // input: './app.js',
