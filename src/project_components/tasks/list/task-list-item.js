@@ -115,7 +115,7 @@ class TaskListItem extends FBP(LitElement) {
     return html`
       <div @-click="^^list-item-clicked(index)">
         <div class="task">${this.data.display_name}</div>
-        <p>${this.data.note}</p>
+        <p>${this.data.note.value}</p>
       </div>
     `;
   }
