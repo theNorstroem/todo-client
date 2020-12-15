@@ -20,6 +20,7 @@ import './menu/main-menu.js';
 import './views/view-dashboard.js';
 import './views/view-auth.js';
 import './views/view-404.js';
+import './views/filter/view-filter.js';
 
 /**
  * `main-stage`
@@ -110,6 +111,7 @@ class MainStage extends FBP(LitElement) {
           <view-dashboard name="dashboard"></view-dashboard>
           <view-auth name="auth"></view-auth>
           <view-task name="task"></view-task>
+          <view-filter name="filter"></view-filter>
           <view-404 name="404"></view-404>
         </furo-pages>
       </furo-app-drawer>

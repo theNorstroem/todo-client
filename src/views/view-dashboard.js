@@ -107,6 +107,7 @@ class ViewDashboard extends FBP(LitElement) {
         <furo-app-bar-top drawer="main-drawer">
           <div>Dashboard</div>
           <furo-empty-spacer></furo-empty-spacer>
+          <furo-icon-button icon="filter-list" @-click="--filter-btn-clicked"></furo-icon-button>
           <furo-icon-button icon="fullscreen" @-click="^^fullscreen-requested"></furo-icon-button>
           <furo-snackbar
             position-right
@@ -127,6 +128,9 @@ class ViewDashboard extends FBP(LitElement) {
           <div></div>
         </div>
       </furo-vertical-flex>
+
+
+      <furo-app-flow ƒ-trigger="--filter-btn-clicked" event="view-filter-requested"></furo-app-flow>
     `;
   }
 }

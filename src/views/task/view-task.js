@@ -84,6 +84,7 @@ class ViewTask extends FBP(LitElement) {
         >
           <div>Tasks</div>
           <furo-empty-spacer></furo-empty-spacer>
+          <furo-icon-button icon="filter-list" @-click="--filter-btn-clicked"></furo-icon-button>
         </furo-app-bar-top>
 
         <furo-horizontal-flex flex>
@@ -113,6 +114,7 @@ class ViewTask extends FBP(LitElement) {
       </furo-vertical-flex>
 
       <furo-app-flow ƒ-trigger="--navBackClicked" event="exit-tasks"></furo-app-flow>
+      <furo-app-flow ƒ-trigger="--filter-btn-clicked" event="view-filter-requested"></furo-app-flow>
       <!-- Listen to changes in the URL if we are in /task -->
       <furo-location
         url-space-regex="${window.APPROOT}/task"

@@ -3,7 +3,9 @@
     ["auth", "login-successfull", "dashboard"],
     ["*", "view-dashboard-requested", "dashboard"],
     ["task", "exit-tasks", "dashboard"],
+    ["filter", "exit-filter", "HISTORY-BACK"],
     ["*", "show-task-requested", "task","*"],
+    ["*", "view-filter-requested", "filter","*"],
     ["*", "search", "EXTERNAL_LINK: https://google.com/"],
     ["*", "searchInNewPage", "EXTERNAL_LINK_BLANK: https://google.com/"]
 ]
