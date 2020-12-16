@@ -31,9 +31,22 @@ export class BaseFilter extends FBP(LitElement) {
        */
       conditions: {type: String},
       /**
+       * set this to init with this condition or set the condition to this value on clear
+       */
+      defaultCondition: {type: String, attribute:"default-condition"},
+      /**
        * The label for the input
        */
-      label: {type: String}
+      label: {type: String},
+      /**
+       * hide the condition dropdown
+       */
+      hideCondition: {type: Boolean, attribute: "hide-condition"},
+      /**
+       * hide the clear
+       */
+      hideClear: {type: Boolean, attribute: "hide-clear"},
+      condensed: {type: Boolean}
     };
   }
 
@@ -49,7 +62,7 @@ export class BaseFilter extends FBP(LitElement) {
      */
     this._FBPAddWireHook("--clear",(e)=>{
           this.field.val._value = "";
-          this.field.is._value = "";
+          this.field.is._value = this.defaultCondition || "";
     });
   }
 
@@ -57,7 +70,9 @@ export class BaseFilter extends FBP(LitElement) {
     this.field = fc;
     this.field.val._meta.label = this.label;
     this._FBPTriggerWire("--filternode",fc)
-
+    if(this.field.is == ""){
+      this.field.is = this.defaultCondition;
+    }
   }
 
   /**
@@ -76,13 +91,27 @@ export class BaseFilter extends FBP(LitElement) {
             display: none;
         }
         furo-data-collection-dropdown{
-          width: 64px;
+          width: var(--condition-dropdown-width, 64px);
           margin-right: 8px;
         }
+
+        :host([hide-condition]) furo-data-collection-dropdown{
+         display: none;
+        }
+
+        :host([hide-clear]) furo-icon-button{
+         display: none;
+        }
+
+
         furo-icon-button{
           --furo-icon-width:16px;
           --furo-icon-height:16px;
           outline: none;
+        }
+
+        ::slotted(*){
+          width: 100%;
         }
     `
   }

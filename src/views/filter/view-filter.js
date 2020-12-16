@@ -2,6 +2,7 @@ import {LitElement, html, css} from 'lit-element';
 import {Theme} from "@furo/framework/src/theme.js"
 import {FBP} from "@furo/fbp";
 import "./filter-bar.js"
+
 /**
  * `view-filter`
  * todo Describe your element
@@ -47,6 +48,9 @@ class ViewFilter extends FBP(LitElement) {
     return Theme.getThemeForComponent('ViewFilter') || css`
       :host {
         display: block;
+        height: 100vh;
+        background-color: var(--update-panel-background, var(--surface, white));
+        color: var(--on-update-panel-background, var(--on-surface, black));
       }
 
       :host([hidden]) {
@@ -74,14 +78,9 @@ class ViewFilter extends FBP(LitElement) {
           <furo-empty-spacer></furo-empty-spacer>
         </furo-app-bar-top>
 
-        <div flex>
-
-       <filter-bar></filter-bar>
-          <div>here
-
-
-          </div>
-
+        <div flex scroll>
+          <filter-bar @-search-result="--searchResult"></filter-bar>
+          <furo-pretty-json ƒ-inject-data="--searchResult"></furo-pretty-json>
         </div>
       </furo-vertical-flex>
 

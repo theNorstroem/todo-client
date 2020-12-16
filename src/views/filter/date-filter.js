@@ -19,8 +19,8 @@ class DateFilter extends BaseFilter {
     // language=HTML
     return html`
       <furo-horizontal-flex>
-        <furo-data-collection-dropdown label="" condensed ƒ-focus="--clear" ƒ-bind-data="--filternode(*.is)" list="${this.conditions}"></furo-data-collection-dropdown>
-        <furo-data-date-input condensed flex ƒ-bind-data="--filternode(*.val)"></furo-data-date-input>
+        <furo-data-collection-dropdown label="" ?condensed="${this.condensed}" ƒ-focus="--clear" ƒ-bind-data="--filternode(*.is)" list="${this.conditions}"></furo-data-collection-dropdown>
+        <furo-data-date-input ?condensed="${this.condensed}" flex ƒ-bind-data="--filternode(*.val)"></furo-data-date-input>
         <furo-icon-button tabindex="-1" icon="clear" @-click="--clear"></furo-icon-button>
       </furo-horizontal-flex>
       <furo-keydown key="Escape" @-key="--clear"></furo-keydown>
