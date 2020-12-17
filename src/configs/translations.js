@@ -2,12 +2,13 @@ export const Translations = {
   en: {},
   'en-US': {},
   'de-DE': {
+
     form: {
       task: {
         task: {
           wraps: {
-            header: { text: 'Wraps' },
-            secondary: { text: 'Test der wraps' },
+            header: {text: 'Wraps'},
+            secondary: {text: 'Test der wraps'},
           },
         },
       },
@@ -29,6 +30,13 @@ export const Translations = {
           label: 'ID',
         },
       },
+      Filter: {
+        done: "Erledigt",
+        due_date: "Fällig am",
+        note: "Notiz",
+        display_name: "Aufgabe",
+        person: "Verantwortlich"
+      }
     },
     reload: 'Neu laden',
     refresh: 'Aktualiseren',
@@ -52,7 +60,7 @@ export const Translations = {
       },
       fieldproto: {
         form: {
-          header: { text: '__proto' },
+          header: {text: '__proto'},
           secondary: {
             text:
               'The smallest field number you can specify is 1, and the largest is 229 - 1, or 536,870,911. You also cannot use the numbers 19000 through 19999 (FieldDescriptor::kFirstReservedNumber through FieldDescriptor::kLastReservedNumber), as they are reserved for the Protocol Buffers implementation - the protocol buffer compiler will complain if you use one of these reserved numbers in your .proto. Similarly, you cannot use any previously reserved field numbers. ',
