@@ -129,7 +129,6 @@ class ViewDashboard extends FBP(LitElement) {
         </div>
       </furo-vertical-flex>
 
-
       <furo-app-flow ƒ-trigger="--filter-btn-clicked" event="view-filter-requested"></furo-app-flow>
     `;
   }

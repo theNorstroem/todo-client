@@ -1,10 +1,10 @@
-import {LitElement, html, css} from 'lit-element';
-import {Theme} from "@furo/framework/src/theme.js"
-import {FBP} from "@furo/fbp";
-import "./date-filter.js"
-import "./text-filter.js"
-import "./filter-slot.js"
-import "@furo/util/src/furo-pretty-json.js"
+import { LitElement, html, css } from 'lit-element';
+import { Theme } from '@furo/framework/src/theme.js';
+import { FBP } from '@furo/fbp';
+import './date-filter.js';
+import './text-filter.js';
+import './filter-slot.js';
+import '@furo/util/src/furo-pretty-json.js';
 
 /**
  * `filter-bar`
@@ -16,8 +16,6 @@ import "@furo/util/src/furo-pretty-json.js"
  * @appliesMixin FBP
  */
 class FilterBar extends FBP(LitElement) {
-
-
   /**
    * @private
    * @return {Object}
@@ -27,7 +25,7 @@ class FilterBar extends FBP(LitElement) {
       /**
        * Description
        */
-      myBool: {type: Boolean}
+      myBool: { type: Boolean },
     };
   }
 
@@ -37,45 +35,6 @@ class FilterBar extends FBP(LitElement) {
   _FBPReady() {
     super._FBPReady();
     //    this._FBPTraceWires()
-    this.initDefaults()
-
-    /**
-     * Register hook on wire --clearAllClicked to
-     * reset all filters to the initial val
-     */
-    this._FBPAddWireHook("--clearAllClicked", () => {
-      this.initDefaults();
-    });
-  }
-
-
-  initDefaults() {
-    let initialFilterData = {
-      flat: {
-        display_name: {
-          "fld": "display_name",
-          "is": "*",
-          "val": ""
-        },
-        due_date: {
-          "fld": "due_date",
-          "is": "<=",
-          "val": "2020-10-08",
-        },
-        done: {
-          "fld": "done",
-          "is": "eq",
-          "val": "false",
-        },
-        responsible: {
-          "fld": "responsible_person",
-          "is": "eq",
-          "val": "",
-        }
-      }
-    };
-
-    this._FBPTriggerWire("--filter", initialFilterData)
   }
 
   /**
@@ -85,26 +44,28 @@ class FilterBar extends FBP(LitElement) {
    */
   static get styles() {
     // language=CSS
-    return Theme.getThemeForComponent('FilterBar') || css`
-      :host {
-        display: block;
-        padding: 12px;
-      }
+    return (
+      Theme.getThemeForComponent('FilterBar') ||
+      css`
+        :host {
+          display: block;
+          padding: 12px;
+        }
 
-      :host([hidden]) {
-        display: none;
-      }
+        :host([hidden]) {
+          display: none;
+        }
 
-      .title {
-        margin: 0px;
-        font-size: 14px;
-        letter-spacing: 0.1px;
-        color: rgba(var(--on-surface-rgb), var(--medium-emphasis-surface));
-        line-height: 20px;
-      }
-    `
+        .title {
+          margin: 0px;
+          font-size: 14px;
+          letter-spacing: 0.1px;
+          color: rgba(var(--on-surface-rgb), var(--medium-emphasis-surface));
+          line-height: 20px;
+        }
+      `
+    );
   }
-
 
   /**
    * @private
@@ -114,52 +75,42 @@ class FilterBar extends FBP(LitElement) {
   render() {
     // language=HTML
     return html`
-
       <furo-form-layouter four breakpoint-big="1000" breakpoint-small="600">
-        <div>
-          <div class="title">due date</div>
-          <date-filter hide-clear condensed label="date" ƒ-bind-filter-condition="--filteDO(*.flat.due_date)"
-                       conditions=">,<,>=,<="></date-filter>
-        </div>
-        <div>
-          <div class="title">task</div>
-          <text-filter condensed label="text" ƒ-bind-filter-condition="--filteDO(*.flat.display_name)"
-                       conditions="sw,*"></text-filter>
-        </div>
-        <div>
-          <div class="title">done</div>
-          <filter-slot hide-clear condensed label="" ƒ-bind-filter-condition="--filteDO(*.flat.done)"
-                       conditions="eq, not">
-            <furo-data-checkbox-input label="done" condensed></furo-data-checkbox-input>
-          </filter-slot>
-        </div>
+        <date-filter
+          hide-clear
+          condensed
+          ƒ-bind-filter-condition="--filteDO(*.due_date)"
+        ></date-filter>
 
-        <div>
-          <div class="title">responsible person</div>
-          <filter-slot hide-clear hide-condition default-condition="eq" label="slotted"
-                       ƒ-bind-filter-condition="--filteDO(*.flat.responsible)" conditions="eq, not">
-            <furo-data-collection-dropdown
-              condensed
-              trailing-icon="clear"
-              @-trailing-icon-clicked="^clear"
-              label="select"
-              ƒ-bind-data="--filteDO(*.flat.responsible.val)"
-              ƒ-inject-entities="--PersonsCollection(*.entities)"
-            ></furo-data-collection-dropdown>
-          </filter-slot>
+        <text-filter condensed ƒ-bind-filter-condition="--filteDO(*.display_name)"></text-filter>
 
-        </div>
+        <text-filter condensed ƒ-bind-filter-condition="--filteDO(*.note)"></text-filter>
 
+        <filter-slot
+          ƒ-bind-filter-condition="--filteDO(*.done)"
+          comparators="eq, not"
+        >
+          <furo-data-checkbox-input label="done" condensed></furo-data-checkbox-input>
+        </filter-slot>
+
+        <filter-slot ƒ-bind-filter-condition="--filteDO(*.person)">
+          <furo-data-collection-dropdown
+            condensed
+            ƒ-bind-data="--filteDO(*.person.val)"
+            ƒ-inject-entities="--PersonsCollection(*.entities)"
+          ></furo-data-collection-dropdown>
+        </filter-slot>
       </furo-form-layouter>
-      <furo-button-bar>
-        <furo-button outline @-click="--srch">Search</furo-button>
-        <furo-button outline @-click="--clearAllClicked">Clear all filters</furo-button>
-      </furo-button-bar>
 
+      <furo-button outline @-click="--srch">Search</furo-button>
+      <furo-button outline @-click="--clearAllClicked">Clear all filters</furo-button>
 
-      <furo-data-object type="furo.filter.Filter" @-data-changed="--v" @-object-ready="--filteDO"
-                        ƒ-inject-raw="--filter"></furo-data-object>
-
+      <furo-data-object
+        type="task.Filter"
+        @-data-changed="--v"
+        @-object-ready="--filteDO"
+        ƒ-init="--clearAllClicked"
+      ></furo-data-object>
 
       <furo-collection-agent
         ƒ-set-filter="--v(*._base64)"
@@ -188,7 +139,6 @@ class FilterBar extends FBP(LitElement) {
         @-response="--PersonsCollection"
         ƒ-hts-in="--PersonsHTS"
       ></furo-collection-agent>
-
     `;
   }
 }

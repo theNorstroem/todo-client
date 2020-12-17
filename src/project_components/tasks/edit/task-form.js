@@ -102,7 +102,6 @@ export class TaskForm extends FBP(LitElement) {
         header-text="${this.headerText ? this.headerText : ''}"
         secondary-text="${this.secondaryText ? this.secondaryText : ''}"
       >
-
         <!-- It is a good practice to set a description -->
         <furo-form-layouter four breakpoint-big="640" breakpoint-small="405">
           <!-- field: note -->

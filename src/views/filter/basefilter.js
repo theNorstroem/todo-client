@@ -1,10 +1,11 @@
-import {LitElement, html, css} from 'lit-element';
-import {Theme} from "@furo/framework/src/theme.js"
-import {FBP} from "@furo/fbp";
+import { LitElement, html, css } from 'lit-element';
+import { Theme } from '@furo/framework/src/theme.js';
+import { FBP } from '@furo/fbp';
+import { NodeEvent } from '@furo/framework/src/EventTreeNode.js';
 
 /**
- * Base filter is the base element to build special filter condition fields
- * Your element is then bindable with type filter.Condition
+ * Base filter is the base element to build special filter comparator fields
+ * Your element is then bindable with type filter.Comparator
  *
  *  after binding with .. a wire --filternode is triggered
  *
@@ -16,8 +17,6 @@ import {FBP} from "@furo/fbp";
  * @appliesMixin FBP
  */
 export class BaseFilter extends FBP(LitElement) {
-
-
   /**
    * @private
    * @return {Object}
@@ -25,28 +24,28 @@ export class BaseFilter extends FBP(LitElement) {
   static get properties() {
     return {
       /**
-       * Semicolon separated list of acceptable conditions.
+       * Semicolon separated list of acceptable comparators.
        *
        * like: gt, lt
        */
-      conditions: {type: String},
+      comparators: { type: String },
       /**
-       * set this to init with this condition or set the condition to this value on clear
+       * set this to init with this comparator or set the comparator to this value on clear
        */
-      defaultCondition: {type: String, attribute:"default-condition"},
+      defaultComparator: { type: String, attribute: 'default-comparator' },
       /**
        * The label for the input
        */
-      label: {type: String},
+      label: { type: String },
       /**
-       * hide the condition dropdown
+       * hide the comparator dropdown
        */
-      hideCondition: {type: Boolean, attribute: "hide-condition"},
+      hideComparator: { type: Boolean, attribute: 'hide-comparator', reflect: true },
       /**
        * hide the clear
        */
-      hideClear: {type: Boolean, attribute: "hide-clear"},
-      condensed: {type: Boolean}
+      hideClear: { type: Boolean, attribute: 'hide-clear' },
+      condensed: { type: Boolean },
     };
   }
 
@@ -57,23 +56,44 @@ export class BaseFilter extends FBP(LitElement) {
     super._FBPReady();
     // this._FBPTraceWires()
     /**
-     * Register hook on wire --condition to
-     * listen on changes of the condition dropdown
+     * Register hook on wire --comparator to
+     * listen on changes of the comparator dropdown
      */
-    this._FBPAddWireHook("--clear",(e)=>{
-          this.field.val._value = "";
-          this.field.is._value = this.defaultCondition || "";
+    this._FBPAddWireHook('--clear', () => {
+      this.field.val._value = '';
+      this.field.is._value = this.defaultComparator || '';
     });
+
+    // set the id val on your input element to remove the trailing icon on hideClear
+    if (this.hideClear) {
+      const inputElement = this.shadowRoot.getElementById('val');
+      if (inputElement) {
+        inputElement.removeAttribute('trailing-icon');
+      }
+    }
   }
 
-  bindFilterCondition(fc){
+  bindFilterCondition(fc) {
     this.field = fc;
-    this.field.val._meta.label = this.label;
 
-    this._FBPTriggerWire("--filternode",fc)
+    // rewire the label to the subfield val
+    if (!this.label) {
+      this.field.val._meta.label = fc._meta.label;
+      // we update the meta and so we need to notify about
+      this.field.val.dispatchNodeEvent(new NodeEvent('this-metas-changed', this.field.val, false));
+    }
 
-    if(this.field.is == ""){
-      this.field.is = this.defaultCondition;
+    this._FBPTriggerWire('--filternode', fc);
+
+    // read the possible values from the spec
+    if (!this.comparators && fc._meta.typespecific) {
+      this.comparators = fc._meta.typespecific.comparators;
+      this.defaultComparator = fc._meta.typespecific.default_comparator;
+    }
+    this.hideComparator = this.hideComparator || fc._meta.typespecific.hide_comparator;
+
+    if (this.field.is === '') {
+      this.field.is = this.defaultComparator;
     }
   }
 
@@ -84,38 +104,41 @@ export class BaseFilter extends FBP(LitElement) {
    */
   static get styles() {
     // language=CSS
-    return Theme.getThemeForComponent('BaseFilter') || css`
+    return (
+      Theme.getThemeForComponent('BaseFilter') ||
+      css`
         :host {
-            display: block;
+          display: block;
         }
 
         :host([hidden]) {
-            display: none;
+          display: none;
         }
-        furo-data-collection-dropdown{
-          width: var(--condition-dropdown-width, 64px);
-          margin-right: 8px;
-        }
+        furo-data-collection-dropdown {
+          width: var(--comparator-dropdown-width, 64px);
+          margin-right: 2px;
 
-        :host([hide-condition]) furo-data-collection-dropdown{
-         display: none;
         }
 
-        :host([hide-clear]) furo-icon-button{
-         display: none;
+        :host([hide-comparator]) furo-data-collection-dropdown {
+          display: none;
         }
 
+        :host([hide-clear]) furo-icon-button {
+          display: none;
+        }
 
-        furo-icon-button{
-          --furo-icon-width:16px;
-          --furo-icon-height:16px;
+        furo-icon-button {
+          --furo-icon-width: 16px;
+          --furo-icon-height: 16px;
           outline: none;
         }
 
-        ::slotted(*){
+        ::slotted(*) {
           width: 100%;
         }
-    `
+      `
+    );
   }
 
   /**
@@ -124,9 +147,6 @@ export class BaseFilter extends FBP(LitElement) {
    */
   render() {
     // language=HTML
-    return html`
-
-
-    `;
+    return html``;
   }
 }
