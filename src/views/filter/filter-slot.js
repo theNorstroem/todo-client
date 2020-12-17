@@ -38,7 +38,7 @@ class FilterSlot extends BaseFilter {
 
       <furo-horizontal-flex>
         <furo-data-collection-dropdown label="" ?condensed="${this.condensed}" ƒ-focus="--clear" ƒ-bind-data="--filternode(*.is)" list="${this.conditions}"></furo-data-collection-dropdown>
-        <div flex @-value-changed="--slotted-value-changed">
+        <div flex @-value-changed="--slotted-value-changed" @-clear="--clear">
           <slot></slot>
         </div>
 

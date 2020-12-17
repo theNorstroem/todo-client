@@ -115,10 +115,10 @@ class FilterBar extends FBP(LitElement) {
     // language=HTML
     return html`
 
-      <furo-form-layouter two>
+      <furo-form-layouter four breakpoint-big="1000" breakpoint-small="600">
         <div>
           <div class="title">due date</div>
-          <date-filter condensed label="date" ƒ-bind-filter-condition="--filteDO(*.flat.due_date)"
+          <date-filter hide-clear condensed label="date" ƒ-bind-filter-condition="--filteDO(*.flat.due_date)"
                        conditions=">,<,>=,<="></date-filter>
         </div>
         <div>
@@ -140,6 +140,8 @@ class FilterBar extends FBP(LitElement) {
                        ƒ-bind-filter-condition="--filteDO(*.flat.responsible)" conditions="eq, not">
             <furo-data-collection-dropdown
               condensed
+              trailing-icon="clear"
+              @-trailing-icon-clicked="^clear"
               label="select"
               ƒ-bind-data="--filteDO(*.flat.responsible.val)"
               ƒ-inject-entities="--PersonsCollection(*.entities)"

@@ -69,7 +69,9 @@ export class BaseFilter extends FBP(LitElement) {
   bindFilterCondition(fc){
     this.field = fc;
     this.field.val._meta.label = this.label;
+
     this._FBPTriggerWire("--filternode",fc)
+
     if(this.field.is == ""){
       this.field.is = this.defaultCondition;
     }
