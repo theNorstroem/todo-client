@@ -86,11 +86,11 @@ export class BaseFilter extends FBP(LitElement) {
     this._FBPTriggerWire('--filternode', fc);
 
     // read the possible values from the spec
-    if (!this.comparators && fc._meta.typespecific) {
-      this.comparators = fc._meta.typespecific.comparators;
-      this.defaultComparator = fc._meta.typespecific.default_comparator;
+    if (!this.comparators && fc._meta.typespecific.filter) {
+      this.comparators = fc._meta.typespecific.filter.comparators;
+      this.defaultComparator = fc._meta.typespecific.filter.default_comparator;
     }
-    this.hideComparator = this.hideComparator || fc._meta.typespecific.hide_comparator;
+    this.hideComparator = this.hideComparator || fc._meta.typespecific.filter.hide_comparator;
 
     if (this.field.is === '') {
       this.field.is = this.defaultComparator;
