@@ -1,3 +1,5 @@
+> **discontiued** please look at https://furo.pro/docs/guides/ebook-tutorial/
+
 # todo-client
 This is the client project of the [todo-server](https://github.com/theNorstroem/todo-server).
  
